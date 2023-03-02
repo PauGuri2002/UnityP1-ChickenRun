@@ -32,11 +32,11 @@ public class chikenControl : MonoBehaviour
     {
         transform.Translate(move.x * Speed * Time.deltaTime, 0, move.y * Speed * Time.deltaTime, Space.World);
 
-        // if (countJump == 2 && Input.GetKey(KeyCode.Space))
-        // {   
-        //     gravity.velocity = 0.95f * gravity.velocity;
+        if (countJump == 2 && Input.GetKey(KeyCode.Space))
+        {   
+            gravity.velocity = 0.95f * gravity.velocity;
 
-        // }
+        }
     }
 
     void OnMove(InputValue WASD)
