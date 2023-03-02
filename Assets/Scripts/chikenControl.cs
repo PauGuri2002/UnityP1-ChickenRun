@@ -19,7 +19,8 @@ public class chikenControl : MonoBehaviour
 
     float countJump = 0f;
 
-
+    [SerializeField]
+    private CamMovement cam;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,10 @@ public class chikenControl : MonoBehaviour
             }
         }
     }
-
+    void OnToggleCamera()
+    {
+        cam.ToggleCam();
+    }
     void OnSpeedUp()
     {
         Speed = 5f;
