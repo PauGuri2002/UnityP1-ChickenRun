@@ -32,11 +32,11 @@ public class chikenControl : MonoBehaviour
     {
         transform.Translate(move.x * Speed * Time.deltaTime, 0, move.y * Speed * Time.deltaTime, Space.World);
 
-        if (countJump == 2 && Input.GetKey(KeyCode.Space))
-        {   
-            gravity.velocity = 0.95f * gravity.velocity;
+        // if (countJump == 2 && Input.GetKey(KeyCode.Space))
+        // {   
+        //     gravity.velocity = 0.95f * gravity.velocity;
 
-        }
+        // }
     }
 
     void OnMove(InputValue WASD)
@@ -52,15 +52,16 @@ public class chikenControl : MonoBehaviour
             countJump++;
             Debug.Log("jumpCount++");
 
+            if (countJump == 2)
+            {
+                gravity.velocity = 0.95f * gravity.velocity;
+            }
         }
     }
 
     void OnSpeedUp()
     {
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            Speed = 5f;
-        }
+        Speed = 5f;
     }
 
     private void OnCollisionEnter(Collision collision)
