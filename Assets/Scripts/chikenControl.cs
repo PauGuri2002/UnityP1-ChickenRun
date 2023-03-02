@@ -14,18 +14,29 @@ public class chikenControl : MonoBehaviour
     private Vector2 move = new Vector2(0, 0);
 
     Rigidbody gravity;
-
+    
     bool isgrounded;
 
     float countJump = 0f;
+    private float Xrotation = 0f, Yrotation= 0f;
+    public float Xsens = 1f, Ysens = 1f;
 
     [SerializeField]
     private CamMovement cam;
+    public GameObject Camera;
 
+    float Xaxis, Yaxis;
+    Vector2 LookPos;
+    void OnLook(InputValue context)
+    {
+        LookPos = context.Get<Vector2>();
+        Debug.Log("LOOKX: " + LookPos);
+    }
     // Start is called before the first frame update
     void Start()
     {
         gravity = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -38,6 +49,18 @@ public class chikenControl : MonoBehaviour
             gravity.velocity = 0.95f * gravity.velocity;
 
         }
+        playerLook();
+    }
+    void playerLook()
+    {
+        Xrotation += LookPos.y * Ysens * Time.deltaTime ;
+        Xrotation = Mathf.Clamp(Xrotation, 80f, -80f);
+        Yrotation += -LookPos.x * Xsens * Time.deltaTime ;
+        Yrotation = Mathf.Clamp(Yrotation, 80f, -80f);
+
+
+        Camera.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
+        transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
     }
 
     void OnMove(InputValue WASD)
@@ -85,4 +108,5 @@ public class chikenControl : MonoBehaviour
             isgrounded = false;
         }
     }
+
 }
