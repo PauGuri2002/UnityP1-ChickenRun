@@ -38,7 +38,7 @@ public class CamMovement : MonoBehaviour
     
     public void ToggleCam(){
 
-            thirdperson = thirdperson? false : true;
+        thirdperson = thirdperson? false : true;
         
-}
+    }
 }

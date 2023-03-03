@@ -7,9 +7,12 @@ public class chikenControl : MonoBehaviour
 {
     [SerializeField]
     private float Speed = 2f;
-
     [SerializeField]
     private float personalForce = 300f;
+    [SerializeField]
+    private float Xsens = 1f;
+    [SerializeField]
+    private float Ysens = 1f;
 
     private Vector2 move = new Vector2(0, 0);
 
@@ -19,19 +22,13 @@ public class chikenControl : MonoBehaviour
 
     float countJump = 0f;
     private float Xrotation = 0f, Yrotation= 0f;
-    public float Xsens = 1f, Ysens = 1f;
 
     [SerializeField]
-    private CamMovement cam;
-    public GameObject Camera;
+    public GameObject cam;
 
     float Xaxis, Yaxis;
     Vector2 LookPos;
-    void OnLook(InputValue context)
-    {
-        LookPos = context.Get<Vector2>();
-        Debug.Log("LOOKX: " + LookPos);
-    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +46,7 @@ public class chikenControl : MonoBehaviour
             gravity.velocity = 0.95f * gravity.velocity;
 
         }
-        playerLook();
+        //playerLook(); comentat perque està bug
     }
     void playerLook()
     {
@@ -59,13 +56,19 @@ public class chikenControl : MonoBehaviour
         Yrotation = Mathf.Clamp(Yrotation, 80f, -80f);
 
 
-        Camera.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
+        cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
         transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
     }
 
     void OnMove(InputValue WASD)
     {
         move = WASD.Get<Vector2>();
+    }
+
+    void OnLook(InputValue context)
+    {
+        LookPos = context.Get<Vector2>();
+        Debug.Log("LOOKX: " + LookPos);
     }
 
     void OnJump()
@@ -84,7 +87,7 @@ public class chikenControl : MonoBehaviour
     }
     void OnToggleCamera()
     {
-        cam.ToggleCam();
+        cam.GetComponent<CamMovement>().ToggleCam();
     }
     void OnSpeedUp()
     {
