@@ -46,14 +46,14 @@ public class chikenControl : MonoBehaviour
             gravity.velocity = 0.95f * gravity.velocity;
 
         }
-        //playerLook(); comentat perque està bug
+        playerLook(); //comentat perque està bug
     }
     void playerLook()
     {
-        Xrotation += LookPos.y * Ysens * Time.deltaTime ;
-        Xrotation = Mathf.Clamp(Xrotation, 80f, -80f);
-        Yrotation += -LookPos.x * Xsens * Time.deltaTime ;
-        Yrotation = Mathf.Clamp(Yrotation, 80f, -80f);
+        Xrotation += LookPos.y * Ysens * Time.deltaTime;
+        Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
+        Yrotation += -LookPos.x * Xsens * Time.deltaTime;
+        Yrotation = Mathf.Clamp(Yrotation, -80f, 80f);
 
 
         cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
