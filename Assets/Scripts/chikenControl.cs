@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,7 +24,6 @@ public class chikenControl : MonoBehaviour
     [SerializeField]
     public GameObject cam;
 
-    float Xaxis, Yaxis;
     Vector2 LookPos;
     
     // Start is called before the first frame update
@@ -46,18 +43,16 @@ public class chikenControl : MonoBehaviour
             gravity.velocity = 0.95f * gravity.velocity;
 
         }
-        playerLook(); //comentat perque està bug
+        playerLook();
     }
     void playerLook()
     {
         Xrotation += -LookPos.y * Ysens * Time.deltaTime;
         Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
         Yrotation += LookPos.x * Xsens * Time.deltaTime;
-        Yrotation = Mathf.Clamp(Yrotation, -80f, 80f);
-
 
         cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
-        transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
+        transform.rotation = Quaternion.Euler(0, Yrotation, 0);
     }
 
     void OnMove(InputValue WASD)
