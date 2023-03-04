@@ -10,9 +10,9 @@ public class chikenControl : MonoBehaviour
     [SerializeField]
     private float personalForce = 300f;
     [SerializeField]
-    private float Xsens = 1f;
+    private float Xsens = 5f;
     [SerializeField]
-    private float Ysens = 1f;
+    private float Ysens = 5f;
 
     private Vector2 move = new Vector2(0, 0);
 
@@ -50,9 +50,9 @@ public class chikenControl : MonoBehaviour
     }
     void playerLook()
     {
-        Xrotation += LookPos.y * Ysens * Time.deltaTime;
+        Xrotation += -LookPos.y * Ysens * Time.deltaTime;
         Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
-        Yrotation += -LookPos.x * Xsens * Time.deltaTime;
+        Yrotation += LookPos.x * Xsens * Time.deltaTime;
         Yrotation = Mathf.Clamp(Yrotation, -80f, 80f);
 
 

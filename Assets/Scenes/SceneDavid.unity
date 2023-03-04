@@ -372,8 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 2
   personalForce: 300
-  Xsens: 1
-  Ysens: 1
+  Xsens: 5
+  Ysens: 5
   cam: {fileID: 963194225}
 --- !u!65 &429944234
 BoxCollider:
