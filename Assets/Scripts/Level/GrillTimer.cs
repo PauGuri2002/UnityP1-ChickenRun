@@ -17,8 +17,6 @@ public class GrillTimer : MonoBehaviour
     public float onTime = 1f;
     public float offTime = 1f;
     public float telegraphTime = 1f;
-    [HideInInspector]
-    public bool isOn = false;
 
     void Start()
     {
@@ -40,12 +38,12 @@ public class GrillTimer : MonoBehaviour
             grillParticles.Play();
 
             yield return new WaitForSeconds(telegraphTime);
-            isOn = true;
+            gameObject.tag = "Killer";
             mr.material = onMaterial;
             emission.rateOverTime = 50;
 
             yield return new WaitForSeconds(onTime);
-            isOn = false;
+            gameObject.tag = "Untagged";
             mr.material = offMaterial;
             emission.rateOverTime = 0;
         }

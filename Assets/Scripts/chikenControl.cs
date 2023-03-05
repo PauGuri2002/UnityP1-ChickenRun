@@ -91,11 +91,18 @@ public class chikenControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             isgrounded = true;
             countJump = 0;
             Debug.Log("jumpCount Reset");
+        }
+
+        if (collision.gameObject.CompareTag("Killer"))
+        {
+            // handle player incapacitation
+            Debug.Log("You have been hit, ouch");
         }
     }
 
