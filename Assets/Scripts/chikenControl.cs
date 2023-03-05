@@ -8,9 +8,7 @@ public class chikenControl : MonoBehaviour
     [SerializeField]
     private float personalForce = 300f;
     [SerializeField]
-    private float Xsens = 5f;
-    [SerializeField]
-    private float Ysens = 5f;
+    private float rotationSens = 5f;
 
     private Vector2 move = new Vector2(0, 0);
 
@@ -47,9 +45,9 @@ public class chikenControl : MonoBehaviour
     }
     void playerLook()
     {
-        Xrotation += -LookPos.y * Ysens * Time.deltaTime;
+        Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
         Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
-        Yrotation += LookPos.x * Xsens * Time.deltaTime;
+        Yrotation += LookPos.x * rotationSens * Time.deltaTime;
 
         cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
         transform.rotation = Quaternion.Euler(0, Yrotation, 0);
@@ -69,7 +67,7 @@ public class chikenControl : MonoBehaviour
     {
         if (isgrounded == true || countJump < 2)
         {
-            gravity.AddForce(0, personalForce, 0);
+            gravity.AddForce(0, personalForce * gravity.mass, 0);
             countJump++;
             Debug.Log("jumpCount++");
 
@@ -90,6 +88,8 @@ public class chikenControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("collided with: " + collision.gameObject.tag);
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             isgrounded = true;
