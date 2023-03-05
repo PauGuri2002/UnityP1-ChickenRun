@@ -63,7 +63,6 @@ public class chikenControl : MonoBehaviour
     void OnLook(InputValue context)
     {
         LookPos = context.Get<Vector2>();
-        Debug.Log("LOOKX: " + LookPos);
     }
 
     void OnJump()
@@ -91,7 +90,6 @@ public class chikenControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.CompareTag("Ground"))
         {
             isgrounded = true;

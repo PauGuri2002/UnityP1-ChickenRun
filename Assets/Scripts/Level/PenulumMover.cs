@@ -14,7 +14,8 @@ public class PenulumMover : MonoBehaviour
 
     void Update()
     {
-        float angle = maxAngle * Mathf.Sin(Time.fixedTime * 2 * Mathf.PI * speed);
+        timer = Time.fixedTime * 2 * Mathf.PI * speed;
+        float angle = maxAngle * Mathf.Sin(timer);
         transform.rotation = Quaternion.Euler(axis * angle);
     }
 }
