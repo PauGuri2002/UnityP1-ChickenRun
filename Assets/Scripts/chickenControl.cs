@@ -65,16 +65,21 @@ public class chickenControl : MonoBehaviour
 
     }
 
-    void OnMove(InputValue WASD)
-    {
-        move = WASD.Get<Vector2>();
-    }
-
     void OnLook(InputValue context)
     {
         LookPos = context.Get<Vector2>();
     }
 
+    void OnToggleCamera()
+    {
+        cam.GetComponent<CamMovement>().ToggleCam();
+    }
+
+    // MOVEMENT 
+    void OnMove(InputValue WASD)
+    {
+        move = WASD.Get<Vector2>();
+    }
     void OnJump()
     {
         if (isgrounded == true || countJump < 2)
@@ -89,15 +94,10 @@ public class chickenControl : MonoBehaviour
             }
         }
     }
-    void OnToggleCamera()
-    {
-        cam.GetComponent<CamMovement>().ToggleCam();
-    }
     void OnSpeedUp()
     {
         Speed = 5f;
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("collided with: " + collision.gameObject.tag);
@@ -115,7 +115,6 @@ public class chickenControl : MonoBehaviour
             Debug.Log("You have been hit, ouch");
         }
     }
-
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
