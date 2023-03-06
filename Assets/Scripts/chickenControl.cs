@@ -45,19 +45,20 @@ public class chickenControl : MonoBehaviour
     }
     void playerLook()
     {
-        Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
-        Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
-        Yrotation += LookPos.x * rotationSens * Time.deltaTime;
+        
 
 
         if (cam.GetComponent<CamMovement>().thirdperson)
         {
 
             cam.transform.LookAt(transform.position);
-            cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens);            
+            cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens * Time.deltaTime);            
         }
         else
         {
+            Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
+            Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
+            Yrotation += LookPos.x * rotationSens * Time.deltaTime;
             cam.transform.position=(transform.position);
             cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
