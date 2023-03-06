@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class chikenControl : MonoBehaviour
+public class chickenControl : MonoBehaviour
 {
     [SerializeField]
     private float Speed = 2f;
