@@ -61,7 +61,7 @@ public class chickenControl : MonoBehaviour
 
             //cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens * Time.deltaTime);
             
-            cam.transform.Translate(new Vector3(LookPos.x * Time.smoothDeltaTime,LookPos.y*Time.smoothDeltaTime, 0));
+            cam.transform.Translate(new Vector3(-LookPos.x * Time.smoothDeltaTime,-LookPos.y*Time.smoothDeltaTime, 0));
             
             cam.transform.LookAt(transform.position);
             

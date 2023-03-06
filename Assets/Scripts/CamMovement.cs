@@ -16,7 +16,7 @@ public class CamMovement : MonoBehaviour
         if (!thirdperson)
         {
             player.GetComponent<MeshRenderer>().enabled = false;
-
+    
         }
     }
 
