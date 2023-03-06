@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
 
 public class chickenControl : MonoBehaviour
 {
@@ -29,7 +28,6 @@ public class chickenControl : MonoBehaviour
 
     [SerializeField]
     public GameObject cam;
-    [SerializeField]
 
 
     Vector2 LookPos;
@@ -37,7 +35,6 @@ public class chickenControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -48,8 +45,6 @@ public class chickenControl : MonoBehaviour
         Movement();
 
         playerLook();
-        
-
     }
     void playerLook()
     {
@@ -68,7 +63,6 @@ public class chickenControl : MonoBehaviour
             cam.transform.Translate(new Vector3((LookPos.x * Time.smoothDeltaTime) * -1,(LookPos.y*Time.smoothDeltaTime) * -1, 0));
             
             cam.transform.LookAt(transform.position);
-            
 
         }
         else
