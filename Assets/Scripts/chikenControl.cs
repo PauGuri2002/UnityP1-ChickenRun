@@ -49,8 +49,20 @@ public class chikenControl : MonoBehaviour
         Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
         Yrotation += LookPos.x * rotationSens * Time.deltaTime;
 
-        cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
-        transform.rotation = Quaternion.Euler(0, Yrotation, 0);
+
+        if (cam.GetComponent<CamMovement>().thirdperson)
+        {
+
+            cam.transform.LookAt(transform.position);
+            cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x);            
+        }
+        else
+        {
+            cam.transform.position=(transform.position);
+            cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
+            transform.rotation = Quaternion.Euler(0, Yrotation, 0);
+        }
+
     }
 
     void OnMove(InputValue WASD)

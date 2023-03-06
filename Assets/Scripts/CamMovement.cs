@@ -7,7 +7,7 @@ public class CamMovement : MonoBehaviour
     [SerializeField]
     private GameObject player;
     Vector3 position;
-    bool thirdperson = false;
+    public bool thirdperson = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,19 @@ public class CamMovement : MonoBehaviour
     void Update()
     {
 
+        //
+
+    }
+
+    void Move()
+    {
+        transform.position = position;
+    }
+
+    public void ToggleCam(){
+
+        thirdperson = thirdperson? false : true;
+
         if (thirdperson == false)
         {
             position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
@@ -29,16 +42,5 @@ public class CamMovement : MonoBehaviour
         }
         Move();
 
-    }
-
-    void Move()
-    {
-        transform.position = position;
-    }
-    
-    public void ToggleCam(){
-
-        thirdperson = thirdperson? false : true;
-        
     }
 }
