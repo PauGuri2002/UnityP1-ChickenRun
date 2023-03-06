@@ -1,22 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class chickenControl : MonoBehaviour
 {
     [SerializeField]
     private float Speed = 2f;
-    [SerializeField]
-    private float personalForce = 300f;
+    private float speedLock = 2f;
+
     [SerializeField]
     private float rotationSens = 5f;
 
+    [SerializeField]
+    private float gravity = 9.81f;
+
+    [SerializeField]
+    private float highJump = 5f;
+
+    float verticalMove;
+
     private Vector2 move = new Vector2(0, 0);
 
-    Rigidbody gravity;
-    
-    bool isgrounded;
+    CharacterController characterController;
 
     float countJump = 0f;
+
     private float Xrotation = 0f, Yrotation= 0f;
 
     [SerializeField]
@@ -27,20 +35,16 @@ public class chickenControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gravity = GetComponent<Rigidbody>();
+
+        characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(move.x * Speed * Time.deltaTime, 0, move.y * Speed * Time.deltaTime, Space.World);
+        Movement();
 
-        if (countJump == 2 && Input.GetKey(KeyCode.Space))
-        {   
-            gravity.velocity = 0.95f * gravity.velocity;
-
-        }
         playerLook();
     }
     void playerLook()
@@ -83,45 +87,81 @@ public class chickenControl : MonoBehaviour
     }
     void OnJump()
     {
-        if (isgrounded == true || countJump < 2)
+  
+        if (characterController.isGrounded)
         {
-            gravity.AddForce(0, personalForce * gravity.mass, 0);
-            countJump++;
-            Debug.Log("jumpCount++");
-
-            if (countJump == 2)
-            {
-                gravity.velocity = 0.95f * gravity.velocity;
-            }
-        }
-    }
-    void OnSpeedUp()
-    {
-        Speed = 5f;
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("collided with: " + collision.gameObject.tag);
-
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isgrounded = true;
             countJump = 0;
-            Debug.Log("jumpCount Reset");
         }
 
-        if (collision.gameObject.CompareTag("Killer"))
+        if (countJump >= 0 && countJump <= 1)
         {
-            // handle player incapacitation
-            Debug.Log("You have been hit, ouch");
+            verticalMove = highJump;
+            countJump++;
+        }
+
+        if(countJump == 1)
+        {
+
         }
     }
-    private void OnCollisionExit(Collision collision)
+    //void OnSpeedUp(CallbackContext isPressed)
+    //{
+    //    if (isPressed.performed)
+    //    {
+    //        Speed = 5f;
+    //    }
+    //    if (isPressed.canceled)
+    //    {
+    //        Speed = speedLock;
+    //    }
+    //}
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("collided with: " + collision.gameObject.tag);
+
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        isgrounded = true;
+    //        countJump = 0;
+    //        Debug.Log("jumpCount Reset");
+    //    }
+
+    //    if (collision.gameObject.CompareTag("Killer"))
+    //    {
+    //        // handle player incapacitation
+    //        Debug.Log("You have been hit, ouch");
+    //    }
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        isgrounded = false;
+    //    }
+    //}
+
+    void Movement()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isgrounded = false;
-        }
-    }
+        //camera forward and right vectors:
+        var forward = cam.transform.forward;
+        var right = cam.transform.right;
 
+        //project forward and right vectors on the horizontal plane (y = 0)
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        //this is the direction in the world space we want to move:
+        
+
+        Vector3 horizontalMove = forward * move.y + right * move.x;
+
+        verticalMove -= gravity * Time.deltaTime;
+
+        Vector3 hvMove = new Vector3(horizontalMove.x, verticalMove, horizontalMove.z);
+        //now we can apply the movement:
+        characterController.Move(hvMove * Speed * Time.deltaTime);
+    }
 }
