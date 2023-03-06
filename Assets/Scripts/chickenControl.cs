@@ -21,6 +21,8 @@ public class chickenControl : MonoBehaviour
 
     [SerializeField]
     public GameObject cam;
+    [SerializeField]
+
 
     Vector2 LookPos;
     
@@ -42,24 +44,35 @@ public class chickenControl : MonoBehaviour
 
         }
         playerLook();
+        
+
     }
     void playerLook()
     {
-        
 
 
         if (cam.GetComponent<CamMovement>().thirdperson)
         {
+            
+            //cam.transform.LookAt(transform.position);
+            Xrotation = LookPos.x * rotationSens;
+            Yrotation = LookPos.y * rotationSens;
+           
 
+            //cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens * Time.deltaTime);
+            
+            cam.transform.Translate(new Vector3(LookPos.x * Time.smoothDeltaTime,LookPos.y*Time.smoothDeltaTime, 0));
+            
             cam.transform.LookAt(transform.position);
-            cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens * Time.deltaTime);            
+            
+
         }
         else
         {
             Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
             Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
             Yrotation += LookPos.x * rotationSens * Time.deltaTime;
-            cam.transform.position=(transform.position);
+            cam.transform.position=new Vector3 (transform.position.x, transform.position.y + 1.5f, transform.position.z);
             cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
         }
