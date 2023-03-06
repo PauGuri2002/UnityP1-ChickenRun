@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 public class chickenControl : MonoBehaviour
 {
     [SerializeField]
-    private float Speed = 2f;
-    private float speedLock = 2f;
+    private float walkSpeed = 2f;
+    [SerializeField]
+    private float runSpeed = 5f;
 
     [SerializeField]
     private float rotationSens = 5f;
@@ -15,6 +16,14 @@ public class chickenControl : MonoBehaviour
 
     [SerializeField]
     private float highJump = 5f;
+
+    [SerializeField]
+    private float pushForce = 10f;
+
+    [SerializeField]
+    public GameObject cam;
+
+    private float speed;
 
     float verticalMove;
 
@@ -26,26 +35,23 @@ public class chickenControl : MonoBehaviour
 
     private float Xrotation = 0f, Yrotation= 0f;
 
-    [SerializeField]
-    public GameObject cam;
-
-
     Vector2 LookPos;
     
-    // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        speed = walkSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Movement();
-
         playerLook();
     }
+
+    // CAMERA CONTROL //
+
     void playerLook()
     {
 
@@ -61,7 +67,6 @@ public class chickenControl : MonoBehaviour
             //cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens * Time.deltaTime);
             
             cam.transform.Translate(new Vector3((LookPos.x * Time.smoothDeltaTime) * -1,(LookPos.y*Time.smoothDeltaTime) * -1, 0));
-            
             cam.transform.LookAt(transform.position);
 
         }
@@ -87,7 +92,8 @@ public class chickenControl : MonoBehaviour
         cam.GetComponent<CamMovement>().ToggleCam();
     }
 
-    // MOVEMENT 
+    // MOVEMENT //
+
     void OnMove(InputValue WASD)
     {
         move = WASD.Get<Vector2>();
@@ -115,60 +121,75 @@ public class chickenControl : MonoBehaviour
     //{
     //    if (isPressed.performed)
     //    {
-    //        Speed = 5f;
+    //        speed = walkSpeed;
     //    }
     //    if (isPressed.canceled)
     //    {
-    //        Speed = speedLock;
-    //    }
-    //}
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("collided with: " + collision.gameObject.tag);
-
-    //    if (collision.gameObject.CompareTag("Ground"))
-    //    {
-    //        isgrounded = true;
-    //        countJump = 0;
-    //        Debug.Log("jumpCount Reset");
-    //    }
-
-    //    if (collision.gameObject.CompareTag("Killer"))
-    //    {
-    //        // handle player incapacitation
-    //        Debug.Log("You have been hit, ouch");
-    //    }
-    //}
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground"))
-    //    {
-    //        isgrounded = false;
+    //        speed = runSpeed;
     //    }
     //}
 
     void Movement()
     {
-        //camera forward and right vectors:
-        var forward = cam.transform.forward;
-        var right = cam.transform.right;
+        // gravity
+        verticalMove -= gravity * Time.deltaTime;
 
-        //project forward and right vectors on the horizontal plane (y = 0)
+        //camera direction
+        Vector3 forward = cam.transform.forward;
+        Vector3 right = cam.transform.right;
         forward.y = 0f;
         right.y = 0f;
         forward.Normalize();
         right.Normalize();
 
-        //this is the direction in the world space we want to move:
-        
-
         Vector3 horizontalMove = forward * move.y + right * move.x;
 
-        verticalMove -= gravity * Time.deltaTime;
+        Vector3 hvMove = new Vector3(horizontalMove.x * speed, verticalMove, horizontalMove.z * speed);
+        characterController.Move(hvMove * Time.deltaTime);
+    }
 
-        Vector3 hvMove = new Vector3(horizontalMove.x, verticalMove, horizontalMove.z);
-        //now we can apply the movement:
-        characterController.Move(hvMove * Speed * Time.deltaTime);
+    // PHYSICS & COLLISION //
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Hitter"))
+        {
+            GetHit();
+        }
+
+        if (hit.gameObject.CompareTag("Killer"))
+        {
+            Die();
+        }
+
+        if (hit.rigidbody == null || hit.rigidbody.isKinematic) { return; }
+        hit.rigidbody.AddForceAtPosition(hit.moveDirection * pushForce, hit.point);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Hitter"))
+        {
+            GetHit();
+        }
+
+        if (other.gameObject.CompareTag("Killer"))
+        {
+            Die();
+        }
+    }
+
+    // DAMAGE & DEATH //
+
+    Coroutine rigidbodyCoroutine;
+
+    void Die()
+    {
+        Debug.Log("You died");
+    }
+
+    void GetHit()
+    {
+        Debug.Log("You got hit");
     }
 }
