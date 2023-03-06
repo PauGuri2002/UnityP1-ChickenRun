@@ -54,7 +54,7 @@ public class chickenControl : MonoBehaviour
         {
 
             cam.transform.LookAt(transform.position);
-            cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x);            
+            cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens);            
         }
         else
         {
