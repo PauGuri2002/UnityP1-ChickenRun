@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 public class chickenControl : MonoBehaviour
 {
     [SerializeField]
-    private float walkSpeed = 2f;
+    private float walkSpeed = 5f;
 
     [SerializeField]
-    private float runSpeed = 5f;
+    private float runSpeed = 10f;
 
     [SerializeField]
     private float rotationSens = 5f;
@@ -26,9 +26,9 @@ public class chickenControl : MonoBehaviour
 
     private float speed;
 
-    public bool isPressed;
-
     float verticalMove;
+
+    public bool isRunning;
 
     private Vector2 move = new Vector2(0, 0);
 
@@ -53,6 +53,27 @@ public class chickenControl : MonoBehaviour
     {
         Movement();
         playerLook();
+
+        if (characterController.isGrounded)
+        {
+            if (isRunning)
+            {
+                speed = runSpeed;
+            }
+            else
+            {
+                speed = walkSpeed;
+            }
+        }
+
+        else
+        {
+            if (!isRunning)
+            {
+                speed = walkSpeed;
+            }
+        }
+
     }
 
     // CAMERA CONTROL //
@@ -95,10 +116,13 @@ public class chickenControl : MonoBehaviour
 
     // MOVEMENT //
 
+    // Get Move Position
     public void OnMove(InputAction.CallbackContext WASD)
     {
         move = WASD.ReadValue<Vector2>();
     }
+
+    // Jump Function
     public void OnJump(InputAction.CallbackContext theJump)
     {
         if (theJump.started)
@@ -122,34 +146,22 @@ public class chickenControl : MonoBehaviour
         }
 
     }
+
+    // Sprint Function
     public void OnSpeedUp(InputAction.CallbackContext theSpeed)
     {
         if (theSpeed.started)
         {
-            speed = runSpeed;
+            isRunning = true;
         }
-        if (theSpeed.performed)
-        {
-            speed = runSpeed;
-        }
+
         if (theSpeed.canceled)
         {
-            speed = walkSpeed;
+            isRunning = false;
         }
     }
 
-    //private void OnEnable()
-    //{
-    //    actionReference.action.Enable();
-    //    speed = runSpeed;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    actionReference.action.Disable();
-    //    speed = walkSpeed;
-    //}
-
+    // Movement Function
     void Movement()
     {
         // gravity
@@ -167,6 +179,11 @@ public class chickenControl : MonoBehaviour
 
         Vector3 hvMove = new Vector3(horizontalMove.x * speed, verticalMove, horizontalMove.z * speed);
         characterController.Move(hvMove * Time.deltaTime);
+
+        if (characterController.isGrounded)
+        {
+            verticalMove = 0;
+        }
     }
 
     // PHYSICS & COLLISION //
@@ -199,7 +216,7 @@ public class chickenControl : MonoBehaviour
             Die();
         }
     }
-
+    
     // DAMAGE & DEATH //
 
     Coroutine rigidbodyCoroutine;
