@@ -33,15 +33,17 @@ public class chickenControl : MonoBehaviour
 
     float countJump = 0f;
 
-   
+    Vector3 originalPos;
 
     //private InputActionReference actionReference;
-    
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         speed = walkSpeed;
+
+        originalPos = transform.position;
     }
 
     void Update()
@@ -172,6 +174,7 @@ public class chickenControl : MonoBehaviour
         if (other.gameObject.CompareTag("Killer"))
         {
             Die();
+
         }
     }
     
@@ -182,10 +185,14 @@ public class chickenControl : MonoBehaviour
     void Die()
     {
         Debug.Log("You died");
+        characterController.enabled = false;
+        transform.position = originalPos;
+        characterController.enabled = true;
     }
 
     void GetHit()
     {
         Debug.Log("You got hit");
+        transform.position = originalPos;
     }
 }
