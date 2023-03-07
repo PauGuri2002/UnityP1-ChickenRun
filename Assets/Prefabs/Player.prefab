@@ -334,7 +334,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &991613664861010995
 MonoBehaviour:
@@ -351,7 +351,7 @@ MonoBehaviour:
   walkSpeed: 10
   runSpeed: 20
   gravity: 9.81
-  highJump: 5
+  highJump: 10
   pushForce: 10
   cam: {fileID: 991613664037738483}
   isRunning: 0
