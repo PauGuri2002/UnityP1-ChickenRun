@@ -348,10 +348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c135783ac9c3149a08c4165332fb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 10
-  runSpeed: 20
-  gravity: 9.81
-  highJump: 10
+  walkSpeed: 7
+  runSpeed: 13
+  gravity: 15
+  highJump: 4
   pushForce: 10
   cam: {fileID: 991613664037738483}
   isRunning: 0
@@ -369,4 +369,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 991613664037738483}
   thirdperson: 0
-  rotationSens: 10
+  rotationSens: 90
