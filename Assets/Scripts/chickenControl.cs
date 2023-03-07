@@ -83,55 +83,59 @@ public class chickenControl : MonoBehaviour
 
     }
 
-    void OnLook(InputValue context)
+    public void OnLook(InputAction.CallbackContext context)
     {
-        LookPos = context.Get<Vector2>();
+        LookPos = context.ReadValue<Vector2>();
     }
 
-    void OnToggleCamera()
+    public void OnToggleCamera()
     {
         cam.GetComponent<CamMovement>().ToggleCam();
     }
 
     // MOVEMENT //
 
-    void OnMove(InputValue WASD)
+    public void OnMove(InputAction.CallbackContext WASD)
     {
-        move = WASD.Get<Vector2>();
+        move = WASD.ReadValue<Vector2>();
     }
-    void OnJump()
+    public void OnJump(InputAction.CallbackContext theJump)
     {
-  
-        if (characterController.isGrounded)
-        {
-            countJump = 0;
-        }
-
-        if (countJump >= 0 && countJump <= 1)
-        {
-            verticalMove = highJump;
-            countJump++;
-        }
-
-        if(countJump == 1) // Glide function, not yet done
+        if (theJump.started)
         {
 
+            if (characterController.isGrounded)
+            {
+                countJump = 0;
+            }
+
+            if (countJump >= 0 && countJump <= 1)
+            {
+                verticalMove = highJump;
+                countJump++;
+            }
+
+            if (countJump == 1) // Glide function, not yet done
+            {
+
+            }
         }
+
     }
-    void OnSpeedUp(InputAction.CallbackContext theSpeed)
+    public void OnSpeedUp(InputAction.CallbackContext theSpeed)
     {
-        //if (theSpeed.started)
-        //{
-        //    isPressed = true;
-        //}
-        //if (theSpeed.performed)
-        //{
-        //    isPressed = true;
-        //}
-        //if (theSpeed.canceled)
-        //{
-        //    isPressed = false;
-        //}
+        if (theSpeed.started)
+        {
+            speed = runSpeed;
+        }
+        if (theSpeed.performed)
+        {
+            speed = runSpeed;
+        }
+        if (theSpeed.canceled)
+        {
+            speed = walkSpeed;
+        }
     }
 
     //private void OnEnable()
