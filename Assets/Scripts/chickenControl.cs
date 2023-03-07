@@ -10,9 +10,6 @@ public class chickenControl : MonoBehaviour
     private float runSpeed = 10f;
 
     [SerializeField]
-    private float rotationSens = 5f;
-
-    [SerializeField]
     private float gravity = 9.81f;
 
     [SerializeField]
@@ -36,11 +33,9 @@ public class chickenControl : MonoBehaviour
 
     float countJump = 0f;
 
-    private float Xrotation = 0f, Yrotation= 0f;
+   
 
     //private InputActionReference actionReference;
-
-    Vector2 LookPos;
     
     void Start()
     {
@@ -52,7 +47,6 @@ public class chickenControl : MonoBehaviour
     void Update()
     {
         Movement();
-        playerLook();
 
         if (characterController.isGrounded)
         {
@@ -76,44 +70,7 @@ public class chickenControl : MonoBehaviour
 
     }
 
-    // CAMERA CONTROL //
-
-    void playerLook()
-    {
-
-        if (cam.GetComponent<CamMovement>().thirdperson)
-        {
-            //cam.transform.LookAt(transform.position);
-            Xrotation = -LookPos.x * rotationSens * Time.deltaTime;
-            Yrotation = -LookPos.y * rotationSens * Time.deltaTime;
-
-            cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
-
-            cam.transform.Translate(new Vector3(0,Yrotation, 0));
-            cam.transform.LookAt(transform.position);
-
-        }
-        else
-        {
-            Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
-            Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
-            Yrotation += LookPos.x * rotationSens * Time.deltaTime;
-            cam.transform.position=new Vector3 (transform.position.x, transform.position.y + 1.5f, transform.position.z);
-            cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
-            transform.rotation = Quaternion.Euler(0, Yrotation, 0);
-        }
-
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        LookPos = context.ReadValue<Vector2>();
-    }
-
-    public void OnToggleCamera()
-    {
-        cam.GetComponent<CamMovement>().ToggleCam();
-    }
+    
 
     // MOVEMENT //
 
