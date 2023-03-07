@@ -5,6 +5,7 @@ public class chickenControl : MonoBehaviour
 {
     [SerializeField]
     private float walkSpeed = 2f;
+
     [SerializeField]
     private float runSpeed = 5f;
 
@@ -25,6 +26,8 @@ public class chickenControl : MonoBehaviour
 
     private float speed;
 
+    public bool isPressed;
+
     float verticalMove;
 
     private Vector2 move = new Vector2(0, 0);
@@ -34,6 +37,8 @@ public class chickenControl : MonoBehaviour
     float countJump = 0f;
 
     private float Xrotation = 0f, Yrotation= 0f;
+
+    //private InputActionReference actionReference;
 
     Vector2 LookPos;
     
@@ -55,20 +60,16 @@ public class chickenControl : MonoBehaviour
     void playerLook()
     {
 
-
         if (cam.GetComponent<CamMovement>().thirdperson)
         {
-            
             //cam.transform.LookAt(transform.position);
             Xrotation = LookPos.x * rotationSens;
             Yrotation = LookPos.y * rotationSens;
-           
 
             //cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens * Time.deltaTime);
             
             cam.transform.Translate(new Vector3((LookPos.x * Time.smoothDeltaTime) * -1,(LookPos.y*Time.smoothDeltaTime) * -1, 0));
             cam.transform.LookAt(transform.position);
-
         }
         else
         {
@@ -112,21 +113,37 @@ public class chickenControl : MonoBehaviour
             countJump++;
         }
 
-        if(countJump == 1)
+        if(countJump == 1) // Glide function, not yet done
         {
 
         }
     }
-    //void OnSpeedUp(CallbackContext isPressed)
+    void OnSpeedUp(InputAction.CallbackContext theSpeed)
+    {
+        //if (theSpeed.started)
+        //{
+        //    isPressed = true;
+        //}
+        //if (theSpeed.performed)
+        //{
+        //    isPressed = true;
+        //}
+        //if (theSpeed.canceled)
+        //{
+        //    isPressed = false;
+        //}
+    }
+
+    //private void OnEnable()
     //{
-    //    if (isPressed.performed)
-    //    {
-    //        speed = walkSpeed;
-    //    }
-    //    if (isPressed.canceled)
-    //    {
-    //        speed = runSpeed;
-    //    }
+    //    actionReference.action.Enable();
+    //    speed = runSpeed;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    actionReference.action.Disable();
+    //    speed = walkSpeed;
     //}
 
     void Movement()

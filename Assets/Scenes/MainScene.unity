@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: d73cb9ddd0c7a3642be38f42b6c47724, type: 2}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4213614, g: 0.45319217, b: 0.46558604, a: 1}
+  m_IndirectSpecularColor: {r: 0.421365, g: 0.45319575, b: 0.46558875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10193,12 +10193,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 10
-  runSpeed: 50
+  runSpeed: 20
   rotationSens: 90
   gravity: 9.81
   highJump: 5
   pushForce: 10
   cam: {fileID: 170913094}
+  isPressed: 0
 --- !u!114 &1966982791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10223,7 +10224,63 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 45224857-c8fc-4fa0-94ca-876882421cd3
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b742b6e8-b30e-4d1c-8889-58f31f1edb95
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3888f6ef-aa30-49d2-9043-2970c5d12ad5
+    m_ActionName: Player/ToggleCamera[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1723a59d-7ac6-4ebb-8b80-95202e77515e
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5e6df771-9141-409e-8887-457b5fed9924
+    m_ActionName: Player/speedUp[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4181fac8-446f-4df6-966d-c1d17adece72
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79ba3dec-51e8-4319-aedf-3cdaa4a002a4
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65203313-241b-424f-8cdf-f5f8c0706733
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c372a7c-0f15-4d66-888c-b92c5c5ee71c
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1fffdc17-39f2-4410-98c8-010e2caa1e79
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 096c3c61-ff6b-41d0-b00b-67004c4c0b41
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a254a42-b2f3-42bf-a5a7-95b8d39690ae
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e84bdc98-81d3-416d-b227-cdd5b42068e3
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04afa92e-7a18-48ea-9030-9991b8417cff
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard+Mouse
   m_DefaultActionMap: Player
