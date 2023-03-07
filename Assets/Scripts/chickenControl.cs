@@ -26,7 +26,7 @@ public class chickenControl : MonoBehaviour
 
     private float speed;
 
-    public bool isPressed;
+   
 
     float verticalMove;
 
@@ -63,13 +63,14 @@ public class chickenControl : MonoBehaviour
         if (cam.GetComponent<CamMovement>().thirdperson)
         {
             //cam.transform.LookAt(transform.position);
-            Xrotation = LookPos.x * rotationSens;
-            Yrotation = LookPos.y * rotationSens;
+            Xrotation = -LookPos.x * rotationSens * Time.deltaTime;
+            Yrotation = -LookPos.y * rotationSens * Time.deltaTime;
 
-            //cam.transform.RotateAround(transform.position, Vector3.up, LookPos.x * rotationSens * Time.deltaTime);
-            
-            cam.transform.Translate(new Vector3((LookPos.x * Time.smoothDeltaTime) * -1,(LookPos.y*Time.smoothDeltaTime) * -1, 0));
+            cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
+
+            cam.transform.Translate(new Vector3(0,Yrotation, 0));
             cam.transform.LookAt(transform.position);
+
         }
         else
         {
@@ -126,15 +127,20 @@ public class chickenControl : MonoBehaviour
     {
         if (theSpeed.started)
         {
+           
             speed = runSpeed;
+            Debug.Log(speed);
         }
         if (theSpeed.performed)
         {
+            Debug.Log(speed);
             speed = runSpeed;
         }
         if (theSpeed.canceled)
         {
+            
             speed = walkSpeed;
+            Debug.Log(speed);
         }
     }
 
