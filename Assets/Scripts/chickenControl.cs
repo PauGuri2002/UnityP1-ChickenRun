@@ -69,11 +69,9 @@ public class chickenControl : MonoBehaviour
                 speed = walkSpeed;
             }
         }
-
     }
 
     
-
     // MOVEMENT //
 
     // Get Move Position
@@ -87,7 +85,6 @@ public class chickenControl : MonoBehaviour
     {
         if (theJump.started)
         {
-
             if (characterController.isGrounded)
             {
                 countJump = 0;
@@ -97,14 +94,15 @@ public class chickenControl : MonoBehaviour
             {
                 verticalMove = highJump;
                 countJump++;
+
             }
+
 
             if (countJump == 1) // Glide function, not yet done
             {
-
+                
             }
         }
-
     }
 
     // Sprint Function
