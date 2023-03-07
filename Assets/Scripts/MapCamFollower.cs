@@ -11,10 +11,11 @@ public class MapCamFollower : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(player.position.x, verticalOffset, player.position.z);
+        transform.position = new Vector3(player.position.x, player.position.y + verticalOffset, player.position.z);
         if(followRotation)
         {
             transform.rotation = Quaternion.Euler(90, player.rotation.eulerAngles.y, 0);
         }
+
     }
 }

@@ -197,7 +197,7 @@
                     "name": "",
                     "id": "52701ab3-0047-405e-94de-110db4532d09",
                     "path": "<Keyboard>/shift",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "Keyboard+Mouse",
                     "action": "speedUp",
