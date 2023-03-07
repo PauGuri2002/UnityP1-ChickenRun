@@ -36,7 +36,7 @@ public class CamMovement : MonoBehaviour
         if (thirdperson)
         {
             //cam.transform.LookAt(transform.position);
-            Xrotation = -LookPos.x * rotationSens * Time.deltaTime;
+            Xrotation = LookPos.x * rotationSens * Time.deltaTime;
             Yrotation = -LookPos.y * rotationSens * Time.deltaTime;
 
             cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
