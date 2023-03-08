@@ -18,7 +18,7 @@ public class chickenControl : MonoBehaviour
 
     CharacterController characterController;
 
-    private float speed;
+    public float speed;
 
     private float verticalMove;
 

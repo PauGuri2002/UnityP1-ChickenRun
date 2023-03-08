@@ -10,14 +10,17 @@ public class CamMovement : MonoBehaviour
     public bool thirdperson = false;
     private Vector2 LookPos;
     private float Xrotation = 0f, Zoom = 0f, Yrotation=0f;
-
+    private Vector3 LastPosition = new Vector3(0,0,0);
+    private Vector3 difference = new Vector3(0,0,0);
     [SerializeField]
     private float rotationSens = 5f, ZoomSens = 20f;
-
+    [SerializeField]
+    private chickenControl chickenControlscript;
 
     // Start is called before the first frame update
     void Start()
     {
+        LastPosition = transform.position;
         if (!thirdperson)
         {
             GetComponent<MeshRenderer>().enabled = false;
@@ -26,9 +29,27 @@ public class CamMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        difference = transform.position - LastPosition;
+
+        
+        //if (difference.magnitude > 0)
+        //{
+        difference.y = Mathf.Clamp(difference.y, 0, 5);
+        difference.z = Mathf.Clamp(difference.z, -10, 10);
+        cam.transform.Translate(difference.x , difference.y , difference.z );
+        //    //cam.transform.LookAt(transform.position);
+
+        //}
+        //cam.transform.position = transform.position;
         LookAround();
+        LastPosition = transform.position;
+
+
     }
+
+
+
 
     void LookAround()
     {
@@ -38,7 +59,8 @@ public class CamMovement : MonoBehaviour
             //cam.transform.LookAt(transform.position);
             Xrotation = LookPos.x * rotationSens * Time.deltaTime;
             Zoom = Zoom * ZoomSens * Time.deltaTime;
-            
+
+            //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z - 10);
 
             cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
 
