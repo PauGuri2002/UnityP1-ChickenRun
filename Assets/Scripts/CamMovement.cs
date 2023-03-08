@@ -35,10 +35,10 @@ public class CamMovement : MonoBehaviour
         
         //if (difference.magnitude > 0)
         //{
-        difference.y = Mathf.Clamp(difference.y, 0, 5);
-        difference.z = Mathf.Clamp(difference.z, -10, 10);
+        //difference.y = Mathf.Clamp(difference.y, 0, 5);
+        //difference.z = Mathf.Clamp(difference.z, -10, 10);
         cam.transform.Translate(difference.x , difference.y , difference.z );
-        //    //cam.transform.LookAt(transform.position);
+        //cam.transform.LookAt(transform.position);
 
         //}
         //cam.transform.position = transform.position;
