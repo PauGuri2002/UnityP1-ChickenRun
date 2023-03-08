@@ -35,14 +35,17 @@ public class GrillTimer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(offTime - telegraphTime);
+
             grillParticles.Play();
 
             yield return new WaitForSeconds(telegraphTime);
+
             gameObject.tag = "Killer";
             mr.material = onMaterial;
             emission.rateOverTime = 50;
 
             yield return new WaitForSeconds(onTime);
+
             gameObject.tag = "Untagged";
             mr.material = offMaterial;
             emission.rateOverTime = 0;

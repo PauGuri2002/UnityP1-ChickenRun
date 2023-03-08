@@ -27,7 +27,7 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Hitter"))
         {
-            GetHit();
+            //GetHit(hit.rigidbody.velocity * hit.rigidbody.mass, hit.point);
         }
 
         if (hit.gameObject.CompareTag("Killer"))
@@ -41,11 +41,6 @@ public class PlayerPhysics : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Hitter"))
-        {
-            GetHit();
-        }
-
         if (other.gameObject.CompareTag("Killer"))
         {
             Die();
@@ -55,8 +50,9 @@ public class PlayerPhysics : MonoBehaviour
     // DAMAGE & DEATH //
 
     Coroutine ragdollCoroutine;
+    Rigidbody rb;
 
-    void Die()
+    public void Die()
     {
         Debug.Log("You died");
         characterController.enabled = false;
@@ -64,21 +60,26 @@ public class PlayerPhysics : MonoBehaviour
         characterController.enabled = true;
     }
 
-    void GetHit()
+    public void GetHit(Vector3 hitForce, Vector3 hitPoint)
     {
         Debug.Log("You got hit");
         if (ragdollCoroutine == null)
         {
-            ragdollCoroutine = StartCoroutine(HandleRagdoll());
+            ragdollCoroutine = StartCoroutine(HandleRagdoll(hitForce,hitPoint));
+        } else if(rb != null)
+        {
+            HandleHit(hitForce, hitPoint);
         }
     }
 
-    IEnumerator HandleRagdoll()
+    IEnumerator HandleRagdoll(Vector3 hitForce, Vector3 hitPoint)
     {
         characterController.enabled = false;
         capsuleCollider.enabled = true;
-        var rb = gameObject.AddComponent<Rigidbody>();
+        rb = gameObject.AddComponent<Rigidbody>();
         rb.mass = pushForce;
+
+        HandleHit(hitForce, hitPoint);
 
         yield return new WaitForSeconds(recoverTime);
 
@@ -86,5 +87,10 @@ public class PlayerPhysics : MonoBehaviour
         capsuleCollider.enabled = false;
         characterController.enabled = true;
         ragdollCoroutine = null;
+    }
+
+    private void HandleHit(Vector3 hitForce, Vector3 hitPoint)
+    {
+        rb.AddForceAtPosition(hitForce, hitPoint);
     }
 }

@@ -1050,9 +1050,9 @@ MonoBehaviour:
   - {fileID: 1998942852648348, guid: f0c66ffbe2165584e85d6087173c1c49, type: 3}
   - {fileID: 1984183076071814, guid: 098d4f0f6432df14f873e1e24113179f, type: 3}
   spawnerSize: {x: 47, y: 13}
-  spawnTimeMin: 0.1
-  spawnTimeMax: 0.5
-  maxCount: 50
+  spawnTimeMin: 0.5
+  spawnTimeMax: 1.2
+  maxCount: 20
 --- !u!4 &583369439
 Transform:
   m_ObjectHideFlags: 0
