@@ -50,6 +50,8 @@ public class CamMovement : MonoBehaviour
         }
         else
         {
+            Camera.main.fieldOfView = 90;
+
             Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
             Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
             Yrotation += LookPos.x * rotationSens * Time.deltaTime;
