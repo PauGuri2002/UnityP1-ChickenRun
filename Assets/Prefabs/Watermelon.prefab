@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5300825823944622443}
   - component: {fileID: 5315650787638063591}
   - component: {fileID: 5315650787638063587}
+  - component: {fileID: 1098896766848244219}
   m_Layer: 0
   m_Name: Watermelon
-  m_TagString: Killer
+  m_TagString: Hitter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,3 +116,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: -1
   m_Mesh: {fileID: 4300000, guid: f748d92d4baa068459789660f183e10c, type: 3}
+--- !u!114 &1098896766848244219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314514149084419773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae08ea44a4a1bdb4a814702439886265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
