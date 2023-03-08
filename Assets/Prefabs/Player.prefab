@@ -99,6 +99,8 @@ GameObject:
   - component: {fileID: 991613664861011005}
   - component: {fileID: 991613664861010995}
   - component: {fileID: 991613664861011004}
+  - component: {fileID: 2637738802309978533}
+  - component: {fileID: 2498377962440215924}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -352,9 +354,8 @@ MonoBehaviour:
   runSpeed: 13
   gravity: 15
   highJump: 4
-  pushForce: 10
+  glideForce: -5
   cam: {fileID: 991613664037738483}
-  isRunning: 0
 --- !u!114 &991613664861011004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,3 +371,30 @@ MonoBehaviour:
   cam: {fileID: 991613664037738483}
   thirdperson: 0
   rotationSens: 90
+--- !u!114 &2637738802309978533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991613664861010997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f914c0c7893fa6c4aa830c55e30becb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushForce: 10
+--- !u!136 &2498377962440215924
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991613664861010997}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.49999997
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
