@@ -9,10 +9,10 @@ public class CamMovement : MonoBehaviour
     Vector3 position;
     public bool thirdperson = false;
     private Vector2 LookPos;
-    private float Xrotation = 0f, Yrotation = 0f;
+    private float Xrotation = 0f, Zoom = 0f, Yrotation=0f;
 
     [SerializeField]
-    private float rotationSens = 5f;
+    private float rotationSens = 5f, ZoomSens = 20f;
 
 
     // Start is called before the first frame update
@@ -37,16 +37,21 @@ public class CamMovement : MonoBehaviour
         {
             //cam.transform.LookAt(transform.position);
             Xrotation = LookPos.x * rotationSens * Time.deltaTime;
-            Yrotation = -LookPos.y * rotationSens * Time.deltaTime;
+            Zoom = Zoom * ZoomSens * Time.deltaTime;
+            
 
             cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
 
-            cam.transform.Translate(new Vector3(0, Yrotation, 0));
+            Camera.main.fieldOfView -= Zoom;
+            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 120);
+            
             cam.transform.LookAt(transform.position);
 
         }
         else
         {
+            Camera.main.fieldOfView = 90;
+
             Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
             Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
             Yrotation += LookPos.x * rotationSens * Time.deltaTime;
@@ -79,5 +84,10 @@ public class CamMovement : MonoBehaviour
 
         }
         cam.transform.position = position;
+    }
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+        Zoom = context.ReadValue<Vector2>().y;
+        
     }
 }
