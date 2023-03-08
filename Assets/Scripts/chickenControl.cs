@@ -21,6 +21,9 @@ public class chickenControl : MonoBehaviour
     [SerializeField]
     public GameObject cam;
 
+    [SerializeField]
+    private float glideForce = -5f;
+
     private float speed;
 
     float verticalMove;
@@ -35,6 +38,7 @@ public class chickenControl : MonoBehaviour
 
     Vector3 originalPos;
 
+    private bool isJumped;
     //private InputActionReference actionReference;
 
     void Start()
@@ -69,7 +73,6 @@ public class chickenControl : MonoBehaviour
                 speed = walkSpeed;
             }
         }
-
     }
 
     
@@ -80,7 +83,6 @@ public class chickenControl : MonoBehaviour
     {
         move = WASD.ReadValue<Vector2>();
     }
-
 
 
     // Sprint Function
@@ -103,8 +105,16 @@ public class chickenControl : MonoBehaviour
     void Movement()
     {
         // gravity
-        verticalMove -= gravity * Time.deltaTime;
-
+        
+        if (countJump == 3 && isJumped == true) // Glide function, not yet done
+        {
+            Debug.Log("Wait untill ground");
+            verticalMove = glideForce;
+        }
+        else
+        {
+            verticalMove -= gravity * Time.deltaTime;
+        }
         //camera direction
         Vector3 forward = cam.transform.forward;
         Vector3 right = cam.transform.right;
@@ -129,6 +139,8 @@ public class chickenControl : MonoBehaviour
     {
         if (theJump.started)
         {
+            isJumped = true;
+
             if (characterController.isGrounded)
             {
                 countJump = 0;
@@ -137,15 +149,13 @@ public class chickenControl : MonoBehaviour
             if (countJump >= 0 && countJump <= 1)
             {
                 verticalMove = highJump;
-                countJump++;
             }
+            countJump++;
+        }
 
-            if (countJump == 2) // Glide function, not yet done
-            {
-                Debug.Log("Wait untill ground");
-                verticalMove -= gravity * Time.deltaTime;
-                //characterController.Move(verticalMove * Time.deltaTime);
-            }
+        if (theJump.canceled)
+        {
+            isJumped = false;
         }
     }
     // PHYSICS & COLLISION //
@@ -176,7 +186,6 @@ public class chickenControl : MonoBehaviour
         if (other.gameObject.CompareTag("Killer"))
         {
             Die();
-
         }
     }
     
