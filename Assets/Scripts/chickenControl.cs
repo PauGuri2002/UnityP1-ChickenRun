@@ -81,41 +81,6 @@ public class chickenControl : MonoBehaviour
             Debug.Log("Shift Released");
         }
     }
-
-    void Movement()
-    {
-        // gravity
-
-        if(characterController.enabled== false) { return; }
-        
-        if (countJump == 3 && isJumped == true) // Glide function, not yet done
-        {
-            Debug.Log("Wait untill ground");
-            verticalMove = glideForce;
-        }
-        else
-        {
-            verticalMove -= gravity * Time.deltaTime;
-        }
-        //camera direction
-        Vector3 forward = cam.transform.forward;
-        Vector3 right = cam.transform.right;
-        forward.y = 0f;
-        right.y = 0f;
-        forward.Normalize();
-        right.Normalize();
-
-        Vector3 horizontalMove = forward * move.y + right * move.x;
-
-        Vector3 hvMove = new Vector3(horizontalMove.x * speed, verticalMove, horizontalMove.z * speed);
-        characterController.Move(hvMove * Time.deltaTime);
-
-        if (characterController.isGrounded)
-        {
-            verticalMove = 0;
-        }
-    }
-
     public void OnJump(InputAction.CallbackContext theJump)
     {
         if (theJump.started)
@@ -137,6 +102,40 @@ public class chickenControl : MonoBehaviour
         if (theJump.canceled)
         {
             isJumped = false;
+        }
+    }
+    void Movement()
+    {
+        // gravity
+
+        if(characterController.enabled == false) { return; }
+        
+        if (countJump == 3 && isJumped == true) // Glide function, not yet done
+        {
+            Debug.Log("Wait untill ground");
+            verticalMove = glideForce - Time.deltaTime;
+        }
+        else
+        {
+            verticalMove -= gravity * Time.deltaTime;
+        }
+
+        //camera direction
+        Vector3 forward = cam.transform.forward;
+        Vector3 right = cam.transform.right;
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 horizontalMove = forward * move.y + right * move.x;
+
+        Vector3 hvMove = new Vector3(horizontalMove.x * speed, verticalMove, horizontalMove.z * speed);
+        characterController.Move(hvMove * Time.deltaTime);
+
+        if (characterController.isGrounded)
+        {
+            verticalMove = 0;
         }
     }
 }
