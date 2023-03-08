@@ -6,13 +6,20 @@ public class PlayerPhysics : MonoBehaviour
 {
     [SerializeField]
     private float pushForce = 10f;
+    [SerializeField]
+    private float recoverTime = 2f;
 
     private Vector3 originalPos;
+
     private CharacterController characterController;
+    private CapsuleCollider capsuleCollider;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        capsuleCollider.enabled = false;
+
         originalPos = transform.position;
     }
 
@@ -69,9 +76,14 @@ public class PlayerPhysics : MonoBehaviour
     IEnumerator HandleRagdoll()
     {
         characterController.enabled = false;
-
+        capsuleCollider.enabled = true;
         var rb = gameObject.AddComponent<Rigidbody>();
+        rb.mass = pushForce;
 
-        yield return null;
+        yield return new WaitForSeconds(recoverTime);
+
+        Destroy(rb);
+        capsuleCollider.enabled = false;
+        characterController.enabled = true;
     }
 }
