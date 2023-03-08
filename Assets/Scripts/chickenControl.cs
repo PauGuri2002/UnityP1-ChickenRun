@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,49 +6,35 @@ public class chickenControl : MonoBehaviour
 {
     [SerializeField]
     private float walkSpeed = 5f;
-
     [SerializeField]
     private float runSpeed = 10f;
-
     [SerializeField]
     private float gravity = 9.81f;
-
     [SerializeField]
     private float highJump = 5f;
-
-    [SerializeField]
-    private float pushForce = 10f;
-
-    [SerializeField]
-    public GameObject cam;
-
     [SerializeField]
     private float glideForce = -5f;
-
-    private float speed;
-
-    float verticalMove;
-
-    public bool isRunning;
-
-    private Vector2 move = new Vector2(0, 0);
+    [SerializeField]
+    private GameObject cam;
 
     CharacterController characterController;
 
+    private float speed;
+
+    private float verticalMove;
+
+    private Vector2 move = new Vector2(0, 0);
+
     float countJump = 0f;
 
-    Vector3 originalPos;
-
     private bool isJumped;
-    //private InputActionReference actionReference;
+    private bool isRunning;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         speed = walkSpeed;
-
-        originalPos = transform.position;
     }
 
     void Update()
@@ -157,53 +144,5 @@ public class chickenControl : MonoBehaviour
         {
             isJumped = false;
         }
-    }
-    // PHYSICS & COLLISION //
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.CompareTag("Hitter"))
-        {
-            GetHit();
-        }
-
-        if (hit.gameObject.CompareTag("Killer"))
-        {
-            Die();
-        }
-
-        if (hit.rigidbody == null || hit.rigidbody.isKinematic) { return; }
-        hit.rigidbody.AddForceAtPosition(hit.moveDirection * pushForce, hit.point);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Hitter"))
-        {
-            GetHit();
-        }
-
-        if (other.gameObject.CompareTag("Killer"))
-        {
-            Die();
-        }
-    }
-    
-    // DAMAGE & DEATH //
-
-    Coroutine rigidbodyCoroutine;
-
-    void Die()
-    {
-        Debug.Log("You died");
-        characterController.enabled = false;
-        transform.position = originalPos;
-        characterController.enabled = true;
-    }
-
-    void GetHit()
-    {
-        Debug.Log("You got hit");
-        transform.position = originalPos;
     }
 }
