@@ -69,6 +69,7 @@ public class chickenControl : MonoBehaviour
                 speed = walkSpeed;
             }
         }
+
     }
 
     
@@ -80,30 +81,7 @@ public class chickenControl : MonoBehaviour
         move = WASD.ReadValue<Vector2>();
     }
 
-    // Jump Function
-    public void OnJump(InputAction.CallbackContext theJump)
-    {
-        if (theJump.started)
-        {
-            if (characterController.isGrounded)
-            {
-                countJump = 0;
-            }
 
-            if (countJump >= 0 && countJump <= 1)
-            {
-                verticalMove = highJump;
-                countJump++;
-
-            }
-
-
-            if (countJump == 1) // Glide function, not yet done
-            {
-                
-            }
-        }
-    }
 
     // Sprint Function
     public void OnSpeedUp(InputAction.CallbackContext theSpeed)
@@ -111,11 +89,13 @@ public class chickenControl : MonoBehaviour
         if (theSpeed.started)
         {
             isRunning = true;
+            Debug.Log("Shift Pressed");
         }
 
         if (theSpeed.canceled)
         {
             isRunning = false;
+            Debug.Log("Shift Released");
         }
     }
 
@@ -144,6 +124,30 @@ public class chickenControl : MonoBehaviour
         }
     }
 
+    // Jump Function
+    public void OnJump(InputAction.CallbackContext theJump)
+    {
+        if (theJump.started)
+        {
+            if (characterController.isGrounded)
+            {
+                countJump = 0;
+            }
+
+            if (countJump >= 0 && countJump <= 1)
+            {
+                verticalMove = highJump;
+                countJump++;
+            }
+
+            if (countJump == 2) // Glide function, not yet done
+            {
+                Debug.Log("Wait untill ground");
+                verticalMove -= gravity * Time.deltaTime;
+                //characterController.Move(verticalMove * Time.deltaTime);
+            }
+        }
+    }
     // PHYSICS & COLLISION //
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
