@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,15 +61,10 @@ public class chickenControl : MonoBehaviour
         }
     }
 
-    
-    // MOVEMENT //
-
-    // Get Move Position
     public void OnMove(InputAction.CallbackContext WASD)
     {
         move = WASD.ReadValue<Vector2>();
     }
-
 
     // Sprint Function
     public void OnSpeedUp(InputAction.CallbackContext theSpeed)
@@ -88,7 +82,6 @@ public class chickenControl : MonoBehaviour
         }
     }
 
-    // Movement Function
     void Movement()
     {
         // gravity
@@ -121,7 +114,6 @@ public class chickenControl : MonoBehaviour
         }
     }
 
-    // Jump Function
     public void OnJump(InputAction.CallbackContext theJump)
     {
         if (theJump.started)
