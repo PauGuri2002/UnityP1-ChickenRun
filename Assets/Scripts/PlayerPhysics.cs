@@ -9,7 +9,7 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField]
     private float recoverTime = 2f;
 
-    private Vector3 originalPos;
+    private Vector3 respawnPos;
 
     private CharacterController characterController;
     private CapsuleCollider capsuleCollider;
@@ -20,7 +20,7 @@ public class PlayerPhysics : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         capsuleCollider.enabled = false;
 
-        originalPos = transform.position;
+        respawnPos = transform.position;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -47,6 +47,15 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
+    public void SetRespawnPoint(Vector3 pos)
+    {
+        respawnPos = pos;
+    }
+    public void SetRespawnPoint(Transform trans)
+    {
+        respawnPos = trans.position;
+    }
+
     // DAMAGE & DEATH //
 
     Coroutine ragdollCoroutine;
@@ -56,7 +65,7 @@ public class PlayerPhysics : MonoBehaviour
     {
         Debug.Log("You died");
         characterController.enabled = false;
-        transform.position = originalPos;
+        transform.position = respawnPos;
         characterController.enabled = true;
     }
 
