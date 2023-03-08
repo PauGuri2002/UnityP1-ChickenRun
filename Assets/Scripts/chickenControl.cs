@@ -85,6 +85,8 @@ public class chickenControl : MonoBehaviour
     void Movement()
     {
         // gravity
+
+        if(characterController.enabled== false) { return; }
         
         if (countJump == 3 && isJumped == true) // Glide function, not yet done
         {
