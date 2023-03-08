@@ -315,6 +315,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 04afa92e-7a18-48ea-9030-9991b8417cff
     m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 991613664861011004}
+        m_TargetAssemblyTypeName: CamMovement, Assembly-CSharp
+        m_MethodName: OnZoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2d04a42b-7c5f-4570-b518-63f828edea3c
+    m_ActionName: Player/Zoom[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e65e83ee-7c65-431c-9b1c-10f1770c2217
+    m_ActionName: Player/PickUp[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard+Mouse
   m_DefaultActionMap: Player
@@ -353,7 +373,7 @@ MonoBehaviour:
   walkSpeed: 7
   runSpeed: 13
   gravity: 15
-  highJump: 4
+  highJump: 7
   glideForce: -5
   cam: {fileID: 991613664037738483}
 --- !u!114 &991613664861011004
@@ -371,6 +391,7 @@ MonoBehaviour:
   cam: {fileID: 991613664037738483}
   thirdperson: 0
   rotationSens: 90
+  ZoomSens: 20
 --- !u!114 &2637738802309978533
 MonoBehaviour:
   m_ObjectHideFlags: 0
