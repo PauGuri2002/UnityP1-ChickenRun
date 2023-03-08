@@ -85,5 +85,6 @@ public class PlayerPhysics : MonoBehaviour
         Destroy(rb);
         capsuleCollider.enabled = false;
         characterController.enabled = true;
+        ragdollCoroutine = null;
     }
 }
