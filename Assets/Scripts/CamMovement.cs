@@ -32,20 +32,25 @@ public class CamMovement : MonoBehaviour
     {        
         difference = transform.position - LastPosition;
 
-        
+
         //if (difference.magnitude > 0)
         //{
         //difference.y = Mathf.Clamp(difference.y, 0, 5);
         //difference.z = Mathf.Clamp(difference.z, -10, 10);
+        LookAround();
+        
         cam.transform.Translate(difference.x , difference.y , difference.z );
         //cam.transform.LookAt(transform.position);
-
+        
         //}
         //cam.transform.position = transform.position;
-        LookAround();
+        
         LastPosition = transform.position;
-
-
+        if (thirdperson)
+        {
+            cam.transform.position = new Vector3 (cam.transform.position.x, transform.position.y + 5f, cam.transform.position.z);
+        }
+        //cam.transform.LookAt(transform.position + new Vector3(0,1,1));
     }
 
 
@@ -61,13 +66,16 @@ public class CamMovement : MonoBehaviour
             Zoom = Zoom * ZoomSens * Time.deltaTime;
 
             //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z - 10);
-
-            cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
+            if(Mathf.Abs(LookPos.x) > 0)
+            {
+                cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
+            }
 
             Camera.main.fieldOfView -= Zoom;
             Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 120);
-            
             cam.transform.LookAt(transform.position);
+
+
 
         }
         else
