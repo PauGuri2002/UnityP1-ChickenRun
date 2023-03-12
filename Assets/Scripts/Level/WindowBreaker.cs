@@ -4,11 +4,19 @@ public class WindowBreaker : MonoBehaviour
 {
     [SerializeField]
     private ParticleSystem particles;
+    AudioSource breakSound;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        if (!collision.gameObject.CompareTag("Player")) { return; }
+        breakSound = GetComponent<AudioSource>();
+    }
+
+    private void OnTriggerEnter(UnityEngine.Collider other)
+    {
+        Debug.Log("Hey");
+        if (!other.gameObject.CompareTag("Player")) { return; }
         particles.Play();
+        breakSound.Play();
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider>().enabled = false;
     }
