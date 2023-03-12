@@ -29,6 +29,8 @@ public class chickenControl : MonoBehaviour
     private bool isJumped;
     private bool isRunning;
 
+    public bool key = false;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -137,5 +139,11 @@ public class chickenControl : MonoBehaviour
         {
             verticalMove = 0;
         }
+    }
+
+    public void SetKey(bool value)
+    {
+        this.key = value;
+        Debug.Log("KEY: " + this.key);
     }
 }
