@@ -25,11 +25,16 @@ public class CamMovement : MonoBehaviour
         {
             GetComponent<MeshRenderer>().enabled = false;
         }
+
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        cam.transform.position = new Vector3(Mathf.Clamp(cam.transform.position.x, transform.position.x - 5, transform.position.x + 5), cam.transform.position.y, Mathf.Clamp(cam.transform.position.z, transform.position.z - 5, cam.transform.position.z + 5));
+        cam.transform.localEulerAngles = new Vector3(Mathf.Clamp(cam.transform.rotation.x, -90, 90), cam.transform.rotation.y, cam.transform.rotation.z);
+
+
         difference = transform.position - LastPosition;
 
 
@@ -38,19 +43,19 @@ public class CamMovement : MonoBehaviour
         //difference.y = Mathf.Clamp(difference.y, 0, 5);
         //difference.z = Mathf.Clamp(difference.z, -10, 10);
         LookAround();
-        
+
         cam.transform.Translate(difference.x , difference.y , difference.z );
+
         //cam.transform.LookAt(transform.position);
-        
         //}
         //cam.transform.position = transform.position;
-        
+
         LastPosition = transform.position;
         if (thirdperson)
         {
             cam.transform.position = new Vector3 (cam.transform.position.x, transform.position.y + 5f, cam.transform.position.z);
         }
-        //cam.transform.LookAt(transform.position + new Vector3(0,1,1));
+        
     }
 
 
@@ -64,17 +69,17 @@ public class CamMovement : MonoBehaviour
             //cam.transform.LookAt(transform.position);
             Xrotation = LookPos.x * rotationSens * Time.deltaTime;
             Zoom = Zoom * ZoomSens * Time.deltaTime;
-
+          
             //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z - 10);
-            if(Mathf.Abs(LookPos.x) > 0)
+            if (Mathf.Abs(LookPos.x) > 0)
             {
                 cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
             }
 
             Camera.main.fieldOfView -= Zoom;
             Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 120);
+          
             cam.transform.LookAt(transform.position);
-
 
 
         }
