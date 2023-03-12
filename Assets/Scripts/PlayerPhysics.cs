@@ -13,12 +13,14 @@ public class PlayerPhysics : MonoBehaviour
 
     private CharacterController characterController;
     private CapsuleCollider capsuleCollider;
+    private chickenControl chickenControl;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-        capsuleCollider.enabled = false;
+        chickenControl = GetComponent<chickenControl>();
+        //capsuleCollider.enabled = false;
 
         respawnPos = transform.position;
     }
@@ -45,7 +47,23 @@ public class PlayerPhysics : MonoBehaviour
         {
             Die();
         }
+        if (other.gameObject.CompareTag("FinalDoor"))
+        {
+            this.chickenControl.SetOpenDoorAvailability(true);
+        }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("FinalDoor"))
+        {
+            this.chickenControl.SetOpenDoorAvailability(false);
+        }
+    }
+
+
+
+    
 
     public void SetRespawnPoint(Vector3 pos)
     {

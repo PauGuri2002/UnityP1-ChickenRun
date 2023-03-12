@@ -15,6 +15,9 @@ public class chickenControl : MonoBehaviour
     private float glideForce = -5f;
     [SerializeField]
     private GameObject cam;
+    [SerializeField]
+    private GameObject door;
+    private Animator _doorAnimator;
 
     CharacterController characterController;
 
@@ -29,12 +32,15 @@ public class chickenControl : MonoBehaviour
     private bool isJumped;
     private bool isRunning;
 
-    public bool key = false;
+    private bool key = false;
+    private bool openDoorAvailability = false;
+
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        _doorAnimator = door.GetComponent<Animator>();
         speed = walkSpeed;
     }
 
@@ -106,6 +112,19 @@ public class chickenControl : MonoBehaviour
             isJumped = false;
         }
     }
+
+    public void OnPickUp()
+    {
+        if (this.openDoorAvailability == false)
+        {
+            return;
+        }
+        if (this.key)
+        {
+            OpenFinalDoor();
+        }
+    }
+
     void Movement()
     {
         // gravity
@@ -141,9 +160,18 @@ public class chickenControl : MonoBehaviour
         }
     }
 
+    private void OpenFinalDoor()
+    {
+        this._doorAnimator.SetBool("open", true);
+    }
+
     public void SetKey(bool value)
     {
         this.key = value;
-        Debug.Log("KEY: " + this.key);
+    }
+
+    public void SetOpenDoorAvailability(bool value)
+    {
+        this.openDoorAvailability = value;
     }
 }
