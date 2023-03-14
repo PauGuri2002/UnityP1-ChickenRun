@@ -5,6 +5,8 @@ public class CamMovement : MonoBehaviour
 {
     [SerializeField]
     private GameObject cam;
+    private GameObject CamParent;
+
 
     Vector3 position;
     public bool thirdperson = false;
@@ -16,6 +18,10 @@ public class CamMovement : MonoBehaviour
     private float rotationSens = 5f, ZoomSens = 20f;
     [SerializeField]
     private chickenControl chickenControlscript;
+    private Transform Hijo;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,17 +31,18 @@ public class CamMovement : MonoBehaviour
         {
             GetComponent<MeshRenderer>().enabled = false;
         }
-
+        Hijo = GetComponentInChildren<Transform>();
+        CamParent = cam.transform.parent.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        cam.transform.position = new Vector3(Mathf.Clamp(cam.transform.position.x, transform.position.x - 5, transform.position.x + 5), cam.transform.position.y, Mathf.Clamp(cam.transform.position.z, transform.position.z - 5, cam.transform.position.z + 5));
-        cam.transform.localEulerAngles = new Vector3(Mathf.Clamp(cam.transform.rotation.x, -90, 90), cam.transform.rotation.y, cam.transform.rotation.z);
+
+        Hijo.rotation = Quaternion.identity;
 
 
-        difference = transform.position - LastPosition;
+        difference = Hijo.position - LastPosition;
 
 
         //if (difference.magnitude > 0)
@@ -43,17 +50,18 @@ public class CamMovement : MonoBehaviour
         //difference.y = Mathf.Clamp(difference.y, 0, 5);
         //difference.z = Mathf.Clamp(difference.z, -10, 10);
         LookAround();
+        CamParent.transform.Translate(difference.x , difference.y, difference.z );
 
-        cam.transform.Translate(difference.x , difference.y , difference.z );
 
         //cam.transform.LookAt(transform.position);
         //}
         //cam.transform.position = transform.position;
 
-        LastPosition = transform.position;
+        LastPosition = Hijo.position;
         if (thirdperson)
         {
-            cam.transform.position = new Vector3 (cam.transform.position.x, transform.position.y + 5f, cam.transform.position.z);
+            CamParent.transform.position = new Vector3 (cam.transform.position.x, Hijo.position.y + 5f, cam.transform.position.z);
+
         }
         
     }
@@ -68,17 +76,19 @@ public class CamMovement : MonoBehaviour
         {
             //cam.transform.LookAt(transform.position);
             Xrotation = LookPos.x * rotationSens * Time.deltaTime;
-            Zoom = Zoom * ZoomSens * Time.deltaTime;
+            //Zoom = Zoom * ZoomSens * Time.deltaTime;
           
             //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z - 10);
             if (Mathf.Abs(LookPos.x) > 0)
             {
-                cam.transform.RotateAround(transform.position, Vector3.up, Xrotation);
+                CamParent.transform.RotateAround(transform.position, Vector3.up, Xrotation);
+                CamParent.transform.rotation = Quaternion.identity;
+
             }
 
-            Camera.main.fieldOfView -= Zoom;
-            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 120);
-          
+            //Camera.main.fieldOfView -= Zoom;
+            //Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 120);
+
             cam.transform.LookAt(transform.position);
 
 
@@ -90,9 +100,9 @@ public class CamMovement : MonoBehaviour
             Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
             Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
             Yrotation += LookPos.x * rotationSens * Time.deltaTime;
-            cam.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+            cam.transform.position = new Vector3(Hijo.position.x, Hijo.position.y + 1.5f, Hijo.position.z);
             cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
-            transform.rotation = Quaternion.Euler(0, Yrotation, 0);
+            
         }
 
     }
@@ -108,17 +118,17 @@ public class CamMovement : MonoBehaviour
 
         if (thirdperson == false)
         {
-            position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+            position = new Vector3(Hijo.position.x, Hijo.position.y + 1.5f, Hijo.position.z);
             GetComponent<MeshRenderer>().enabled = false;
         }
         else
         {
-            position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z - 10);
+            position = new Vector3(Hijo.position.x, Hijo.position.y + 5, Hijo.position.z - 10);
             GetComponent<MeshRenderer>().enabled = true;
 
 
         }
-        cam.transform.position = position;
+        CamParent.transform.position = position;
     }
     public void OnZoom(InputAction.CallbackContext context)
     {
