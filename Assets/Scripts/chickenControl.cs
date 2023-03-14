@@ -8,9 +8,10 @@ public class chickenControl : MonoBehaviour
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float highJump = 5f;
     [SerializeField] private float glideForce = 5f;
-    [SerializeField] private GameObject cam;
-    [SerializeField] private GameObject door;
 
+    [SerializeField] private GameObject cam;
+
+    [SerializeField] private GameObject door;
     private Animator _doorAnimator;
 
     CharacterController characterController;
@@ -63,6 +64,7 @@ public class chickenControl : MonoBehaviour
                 speed = walkSpeed;
             }
         }
+
         apexLastFrame = verticalMove;
     }
 
@@ -77,13 +79,13 @@ public class chickenControl : MonoBehaviour
         if (theSpeed.started)
         {
             isRunning = true;
-            Debug.Log("Shift Pressed");
+            //Debug.Log("Shift Pressed");
         }
 
         if (theSpeed.canceled)
         {
             isRunning = false;
-            Debug.Log("Shift Released");
+            //Debug.Log("Shift Released");
         }
     }
     public void OnJump(InputAction.CallbackContext theJump)
@@ -124,14 +126,13 @@ public class chickenControl : MonoBehaviour
 
     void Movement()
     {
-        // gravity
-
         //Debug.Log(apexLastFrame + " " + verticalMove);
         if(characterController.enabled == false) { return; }
 
-        if (apexTigger == true && isJumped == true) // Glide function
+        // Glide function
+        if (apexTigger == true && isJumped == true) 
         {
-            Debug.Log("Wait untill ground");
+            //Debug.Log("Wait untill ground");
             verticalMove -= glideForce * Time.deltaTime;
         }
 
@@ -143,10 +144,9 @@ public class chickenControl : MonoBehaviour
         if (verticalMove * apexLastFrame < 0 && countJump == 2)
         {
             apexTigger = true;
-            Debug.Log("esta entrando");
+            //Debug.Log("esta entrando");
         }
   
-
         //camera direction
         Vector3 forward = cam.transform.forward;
         Vector3 right = cam.transform.right;
@@ -160,6 +160,7 @@ public class chickenControl : MonoBehaviour
         Vector3 hvMove = new Vector3(horizontalMove.x * speed, verticalMove, horizontalMove.z * speed);
         characterController.Move(hvMove * Time.deltaTime);
 
+        // reset all properties when grouded
         if (characterController.isGrounded)
         {
             verticalMove = 0;
