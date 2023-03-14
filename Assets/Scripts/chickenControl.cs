@@ -3,20 +3,14 @@ using UnityEngine.InputSystem;
 
 public class chickenControl : MonoBehaviour
 {
-    [SerializeField]
-    private float walkSpeed = 5f;
-    [SerializeField]
-    private float runSpeed = 10f;
-    [SerializeField]
-    private float gravity = 9.81f;
-    [SerializeField]
-    private float highJump = 5f;
-    [SerializeField]
-    private float glideForce = -5f;
-    [SerializeField]
-    private GameObject cam;
-    [SerializeField]
-    private GameObject door;
+    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float runSpeed = 10f;
+    [SerializeField] private float gravity = 9.81f;
+    [SerializeField] private float highJump = 5f;
+    [SerializeField] private float glideForce = 5f;
+    [SerializeField] private GameObject cam;
+    [SerializeField] private GameObject door;
+
     private Animator _doorAnimator;
 
     CharacterController characterController;
@@ -35,6 +29,8 @@ public class chickenControl : MonoBehaviour
     private bool key = false;
     private bool openDoorAvailability = false;
 
+    private bool apexTigger;
+    private float apexLastFrame;
 
     void Start()
     {
@@ -67,6 +63,7 @@ public class chickenControl : MonoBehaviour
                 speed = walkSpeed;
             }
         }
+        apexLastFrame = verticalMove;
     }
 
     public void OnMove(InputAction.CallbackContext WASD)
@@ -129,17 +126,26 @@ public class chickenControl : MonoBehaviour
     {
         // gravity
 
+        //Debug.Log(apexLastFrame + " " + verticalMove);
         if(characterController.enabled == false) { return; }
-        
-        if (countJump == 3 && isJumped == true) // Glide function, not yet done
+
+        if (apexTigger == true && isJumped == true) // Glide function
         {
             Debug.Log("Wait untill ground");
-            verticalMove = glideForce - Time.deltaTime;
+            verticalMove -= glideForce * Time.deltaTime;
         }
+
         else
         {
             verticalMove -= gravity * Time.deltaTime;
         }
+
+        if (verticalMove * apexLastFrame < 0 && countJump == 2)
+        {
+            apexTigger = true;
+            Debug.Log("esta entrando");
+        }
+  
 
         //camera direction
         Vector3 forward = cam.transform.forward;
@@ -157,6 +163,8 @@ public class chickenControl : MonoBehaviour
         if (characterController.isGrounded)
         {
             verticalMove = 0;
+            apexTigger = false;
+            countJump = 0;
         }
     }
 
