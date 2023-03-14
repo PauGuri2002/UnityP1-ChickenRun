@@ -290,7 +290,7 @@ MonoBehaviour:
   runSpeed: 13
   gravity: 15
   highJump: 7
-  glideForce: -5
+  glideForce: 5
   cam: {fileID: 0}
   door: {fileID: 0}
   speed: 0
