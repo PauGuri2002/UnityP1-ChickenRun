@@ -22,7 +22,6 @@ public class CamMovement : MonoBehaviour
 
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,11 +57,7 @@ public class CamMovement : MonoBehaviour
         //cam.transform.position = transform.position;
 
         LastPosition = Hijo.position;
-        if (thirdperson)
-        {
-            CamParent.transform.position = new Vector3 (cam.transform.position.x, Hijo.position.y + 5f, cam.transform.position.z);
 
-        }
         
     }
 
@@ -76,7 +71,7 @@ public class CamMovement : MonoBehaviour
         {
             //cam.transform.LookAt(transform.position);
             Xrotation = LookPos.x * rotationSens * Time.deltaTime;
-            //Zoom = Zoom * ZoomSens * Time.deltaTime;
+            Zoom = Zoom * ZoomSens * Time.deltaTime;
           
             //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z - 10);
             if (Mathf.Abs(LookPos.x) > 0)
@@ -86,8 +81,8 @@ public class CamMovement : MonoBehaviour
 
             }
 
-            //Camera.main.fieldOfView -= Zoom;
-            //Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 120);
+            Camera.main.fieldOfView -= Zoom;
+            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 120);
 
             cam.transform.LookAt(transform.position);
 
@@ -123,6 +118,7 @@ public class CamMovement : MonoBehaviour
         }
         else
         {
+
             position = new Vector3(Hijo.position.x, Hijo.position.y + 5, Hijo.position.z - 10);
             GetComponent<MeshRenderer>().enabled = true;
 
