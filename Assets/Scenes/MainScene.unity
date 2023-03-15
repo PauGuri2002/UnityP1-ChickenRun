@@ -16736,6 +16736,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1526964690268444965, guid: df6490c133b56b14ba28ecb79e94ad9d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: df6490c133b56b14ba28ecb79e94ad9d, type: 3}
       propertyPath: m_Name
       value: chicken_player_v03
