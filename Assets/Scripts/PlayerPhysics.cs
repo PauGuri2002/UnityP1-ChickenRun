@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class PlayerPhysics : MonoBehaviour
 {
-    [SerializeField]
-    private float pushForce = 10f;
-    [SerializeField]
-    private float recoverTime = 2f;
+    [SerializeField] private float pushForce = 10f;
+    [SerializeField] private float recoverTime = 2f;
 
     private Vector3 respawnPos;
 
     private CharacterController characterController;
     private CapsuleCollider capsuleCollider;
     private chickenControl chickenControl;
+    private respawnObjects respawnObjectsScript;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         chickenControl = GetComponent<chickenControl>();
+        respawnObjectsScript = GetComponent<respawnObjects>();
+
         //capsuleCollider.enabled = false;
 
         respawnPos = transform.position;
@@ -85,6 +86,7 @@ public class PlayerPhysics : MonoBehaviour
         characterController.enabled = false;
         transform.position = respawnPos;
         characterController.enabled = true;
+        respawnObjectsScript.itsALIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE();
     }
 
     public void GetHit(Vector3 hitForce, Vector3 hitPoint)
