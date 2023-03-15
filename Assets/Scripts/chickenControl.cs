@@ -33,6 +33,8 @@ public class chickenControl : MonoBehaviour
     private bool apexTigger;
     private float apexLastFrame;
 
+    [SerializeField] private GameObject modelKFC;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -66,6 +68,9 @@ public class chickenControl : MonoBehaviour
         }
 
         apexLastFrame = verticalMove;
+
+        //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0, Camera.main.transform.localEulerAngles.y);
+
     }
 
     public void OnMove(InputAction.CallbackContext WASD)
@@ -126,8 +131,10 @@ public class chickenControl : MonoBehaviour
 
     void Movement()
     {
+        //transform.rotation = Quaternion.identity;
+
         //Debug.Log(apexLastFrame + " " + verticalMove);
-        if(characterController.enabled == false) { return; }
+        if (characterController.enabled == false) { return; }
 
         // Glide function
         if (apexTigger == true && isJumped == true) 
@@ -159,6 +166,8 @@ public class chickenControl : MonoBehaviour
 
         Vector3 hvMove = new Vector3(horizontalMove.x * speed, verticalMove, horizontalMove.z * speed);
         characterController.Move(hvMove * Time.deltaTime);
+
+        if (horizontalMove.magnitude > 0) { modelKFC.transform.rotation = Quaternion.LookRotation(horizontalMove); } 
 
         // reset all properties when grouded
         if (characterController.isGrounded)
