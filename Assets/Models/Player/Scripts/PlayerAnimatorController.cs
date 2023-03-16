@@ -8,6 +8,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private Animator _animator;
     private CharacterController characterController;
+    //private bool isFlying;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class PlayerAnimatorController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext WASD)
     {
         _animator.SetBool("walking", WASD.ReadValue<Vector2>() == new Vector2(0f, 0f) ? false : true);
+        //Flying();
     }
 
     // Sprint Function
@@ -34,6 +36,7 @@ public class PlayerAnimatorController : MonoBehaviour
     {
 
         _animator.SetBool("jumping", characterController.isGrounded);
+        //Flying();
     }
 
     public bool isRunning(InputAction.CallbackContext theSpeed)
@@ -42,5 +45,11 @@ public class PlayerAnimatorController : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public void Flying()
+    {
+        //this._animator.SetBool("flying", true);
+        _animator.SetBool("flying", true);
     }
 }

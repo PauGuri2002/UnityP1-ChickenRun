@@ -17053,7 +17053,7 @@ GameObject:
   - component: {fileID: 1687589486}
   m_Layer: 0
   m_Name: Sauce
-  m_TagString: Draggable
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
