@@ -13,7 +13,6 @@ public class WindowBreaker : MonoBehaviour
 
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
-        Debug.Log("Hey");
         if (!other.gameObject.CompareTag("Player")) { return; }
         particles.Play();
         breakSound.Play();

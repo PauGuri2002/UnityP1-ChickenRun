@@ -43,15 +43,12 @@ public class chickenControl : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         _doorAnimator = door.GetComponent<Animator>();
-        //_playerAnimator = this.GetComponentInChildren<Animator>();
-
 
         speed = walkSpeed;
     }
 
     void Update()
     {
-        Debug.Log(_playerAnimator);
         Movement();
 
         if (characterController.isGrounded)

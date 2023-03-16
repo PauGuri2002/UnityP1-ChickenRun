@@ -86,7 +86,7 @@ public class PlayerPhysics : MonoBehaviour
         characterController.enabled = false;
         transform.position = respawnPos;
         characterController.enabled = true;
-        respawnObjectsScript.itsALIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE();
+        respawnObjectsScript.ResetTransform();
     }
 
     public void GetHit(Vector3 hitForce, Vector3 hitPoint)
