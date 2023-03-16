@@ -19,17 +19,15 @@ public class CamMovement : MonoBehaviour
     [SerializeField]
     private float rotationSens = 5f, ZoomSens = 20f;
     [SerializeField]
-    private chickenControl chickenControlscript;
-
-
+    private GameObject playerRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        LastPosition = transform.position;
+        LastPosition = camRotator.position;
         if (!thirdperson)
         {
-            //GetComponent<MeshRenderer>().enabled = false;
+            playerRenderer.SetActive(false);
         }
         CamParent = cam.transform.parent.gameObject;
     }
@@ -60,9 +58,6 @@ public class CamMovement : MonoBehaviour
 
         
     }
-
-
-
 
     void LookAround()
     {
@@ -95,7 +90,7 @@ public class CamMovement : MonoBehaviour
             Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
             Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
             Yrotation += LookPos.x * rotationSens * Time.deltaTime;
-            cam.transform.position = new Vector3(camRotator.position.x, camRotator.position.y + 1.5f, camRotator.position.z);
+            CamParent.transform.position = new Vector3(camRotator.position.x, camRotator.position.y + 1.5f, camRotator.position.z);
             cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
             
         }
@@ -107,21 +102,22 @@ public class CamMovement : MonoBehaviour
         LookPos = context.ReadValue<Vector2>();
     }
 
-    public void OnToggleCamera()
+    public void OnToggleCamera(InputAction.CallbackContext context)
     {
+        if(context.performed || context.canceled) { return; }
+        
         thirdperson = thirdperson ? false : true;
 
         if (thirdperson == false)
         {
             position = new Vector3(camRotator.position.x, camRotator.position.y + 1.5f, camRotator.position.z);
-            //GetComponent<MeshRenderer>().enabled = false;
+            playerRenderer.SetActive(false);
         }
         else
         {
 
             position = new Vector3(camRotator.position.x, camRotator.position.y + 5, camRotator.position.z - 10);
-            //GetComponent<MeshRenderer>().enabled = true;
-
+            playerRenderer.SetActive(true);
 
         }
         CamParent.transform.position = position;

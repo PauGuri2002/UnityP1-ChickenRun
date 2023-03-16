@@ -158,7 +158,7 @@ MonoBehaviour:
       - m_Target: {fileID: 6282903418717495729}
         m_TargetAssemblyTypeName: CamMovement, Assembly-CSharp
         m_MethodName: OnToggleCamera
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -343,7 +343,7 @@ MonoBehaviour:
   thirdperson: 0
   rotationSens: 90
   ZoomSens: 20
-  chickenControlscript: {fileID: 0}
+  playerRenderer: {fileID: 5151934217256745421}
 --- !u!114 &5457853735503463894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushForce: 10
-  recoverTime: 2
+  recoverTime: 1
 --- !u!136 &8312163175610140247
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7565839162051440814}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 1.3138618
   m_Height: 3.4475002
   m_Direction: 1
@@ -473,25 +473,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df6490c133b56b14ba28ecb79e94ad9d, type: 3}
---- !u!1 &4955220197622117549 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8108085122129792975, guid: df6490c133b56b14ba28ecb79e94ad9d, type: 3}
-  m_PrefabInstance: {fileID: 5457853735588431004}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &5457853736372675089
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4955220197622117549}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.004127991
-  m_Height: 0.022699293
-  m_Direction: 1
-  m_Center: {x: 0.000000002851986, y: 0.005865639, z: 0.0006952952}
 --- !u!1 &5151934217256745421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: df6490c133b56b14ba28ecb79e94ad9d, type: 3}

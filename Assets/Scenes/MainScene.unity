@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: d73cb9ddd0c7a3642be38f42b6c47724, type: 2}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4213614, g: 0.45319217, b: 0.46558604, a: 1}
+  m_IndirectSpecularColor: {r: 0.421365, g: 0.45319575, b: 0.46558875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7248,13 +7248,16 @@ MonoBehaviour:
   m_text: 'Controls:
 
 
+    Mouse -> Look
+
     WASD -> Move
 
     Space -> Jump
 
-    Shift + WASD -> Sprint
+    Shift
+    + WASD -> Sprint
 
-'
+    Scroll (3rd person) -> Zoom'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7752,7 +7755,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5c2f5ca33485fbd42a9e7af0cf292651, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17978,7 +17981,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.2961929
+  m_Radius: 1.78
   m_Height: 3.0896885
   m_Direction: 1
   m_Center: {x: -0.00000009536743, y: -0.57545227, z: 0.002628708}
@@ -18524,10 +18527,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 32003566935081769, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
-      propertyPath: m_Height
-      value: 3.4475
-      objectReference: {fileID: 0}
     - target: {fileID: 5079174525167319530, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: cam
       value: 
@@ -18543,6 +18542,10 @@ PrefabInstance:
     - target: {fileID: 5151934217256745421, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_Name
       value: ChickenModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151934217256745421, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5457853735503463893, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_RootOrder
@@ -18588,22 +18591,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5457853735503463894, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
-      propertyPath: recoverTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5491163874372936567, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5491163874372936567, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6282903418717495729, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 534295883}
+    - target: {fileID: 6282903418717495729, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
+      propertyPath: thirdperson
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7565839162051440814, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_Name
       value: Player

@@ -33,7 +33,7 @@ public class chickenControl : MonoBehaviour
     private bool key = false;
     private bool openDoorAvailability = false;
 
-    private bool apexTigger;
+    private bool apexTrigger;
     private float apexLastFrame;
 
     [SerializeField] private GameObject modelKFC;
@@ -135,32 +135,24 @@ public class chickenControl : MonoBehaviour
 
     void Movement()
     {
-        //transform.rotation = Quaternion.identity;
-
-        //Debug.Log(apexLastFrame + " " + verticalMove);
         if (characterController.enabled == false) { return; }
 
         // Glide function
-        if (apexTigger == true && isJumped == true)
+        if (apexTrigger && isJumped)
         {
-            //Debug.Log("Wait untill ground");
             verticalMove -= glideForce * Time.deltaTime;
-            isFlying = true;
-            Flying();
-
+            Flying(true);
         }
 
         else
         {
             verticalMove -= gravity * Time.deltaTime;
-            isFlying = false;
-            Flying();
+            Flying(false);
         }
 
-        if (verticalMove * apexLastFrame < 0 && countJump == 2)
+        if (verticalMove * apexLastFrame < 0 && apexLastFrame > 0 && countJump == 2)
         {
-            apexTigger = true;
-            //Debug.Log("esta entrando");
+            apexTrigger = true;
         }
 
         //camera direction
@@ -178,32 +170,32 @@ public class chickenControl : MonoBehaviour
 
         if (horizontalMove.magnitude > 0) { modelKFC.transform.rotation = Quaternion.LookRotation(horizontalMove); }
 
-        // reset all properties when grouded
+        // reset all properties when grounded
         if (characterController.isGrounded)
         {
             verticalMove = 0;
-            apexTigger = false;
+            apexTrigger = false;
             countJump = 0;
         }
     }
 
     private void OpenFinalDoor()
     {
-        this._doorAnimator.SetBool("open", true);
+        _doorAnimator.SetBool("open", true);
     }
 
     public void SetKey(bool value)
     {
-        this.key = value;
+        key = value;
     }
 
     public void SetOpenDoorAvailability(bool value)
     {
-        this.openDoorAvailability = value;
+        openDoorAvailability = value;
     }
 
-    public void Flying()
+    public void Flying(bool value)
     {
-        this._playerAnimator.SetBool("flying", isFlying);
+        _playerAnimator.SetBool("flying", value);
     }
 }

@@ -28,11 +28,6 @@ public class PlayerPhysics : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Hitter"))
-        {
-            //GetHit(hit.rigidbody.velocity * hit.rigidbody.mass, hit.point);
-        }
-
         if (hit.gameObject.CompareTag("Killer"))
         {
             Die();
