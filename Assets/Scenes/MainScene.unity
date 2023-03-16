@@ -3006,11 +3006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terminalVelocity: 20
   particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
---- !u!95 &472482704 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5457853736291740609, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
-  m_PrefabInstance: {fileID: 5457853735718142800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484452197
 GameObject:
   m_ObjectHideFlags: 0
@@ -25463,10 +25458,6 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1103293927}
-    - target: {fileID: 5079174525167319530, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
-      propertyPath: _playerAnimator
-      value: 
-      objectReference: {fileID: 472482704}
     - target: {fileID: 5151934217256745421, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_Name
       value: ChickenModel

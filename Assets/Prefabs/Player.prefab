@@ -323,7 +323,7 @@ MonoBehaviour:
   glideForce: 5
   cam: {fileID: 0}
   door: {fileID: 0}
-  _playerAnimator: {fileID: 0}
+  _playerAnimator: {fileID: 5457853736291740609}
   speed: 0
   modelKFC: {fileID: 5151934217256745421}
 --- !u!114 &6282903418717495729
