@@ -13,7 +13,8 @@ public class chickenControl : MonoBehaviour
 
     [SerializeField] private GameObject door;
     private Animator _doorAnimator;
-    //private Animator _playerAnimator;
+    [SerializeField]
+    private Animator _playerAnimator;
 
     CharacterController characterController;
 
@@ -27,7 +28,7 @@ public class chickenControl : MonoBehaviour
 
     private bool isJumped;
     private bool isRunning;
-    //private bool isFlying;
+    private bool isFlying;
 
     private bool key = false;
     private bool openDoorAvailability = false;
@@ -42,7 +43,7 @@ public class chickenControl : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         _doorAnimator = door.GetComponent<Animator>();
-       // _playerAnimator = this.GetComponentInChildren<Animator>();
+        //_playerAnimator = this.GetComponentInChildren<Animator>();
 
 
         speed = walkSpeed;
@@ -50,7 +51,7 @@ public class chickenControl : MonoBehaviour
 
     void Update()
     {
-       // Debug.Log(_playerAnimator);
+        Debug.Log(_playerAnimator);
         Movement();
 
         if (characterController.isGrounded)
@@ -147,14 +148,16 @@ public class chickenControl : MonoBehaviour
         {
             //Debug.Log("Wait untill ground");
             verticalMove -= glideForce * Time.deltaTime;
-            //Flying();
+            isFlying = true;
+            Flying();
 
         }
 
         else
         {
             verticalMove -= gravity * Time.deltaTime;
-            //Flying();
+            isFlying = false;
+            Flying();
         }
 
         if (verticalMove * apexLastFrame < 0 && countJump == 2)
@@ -202,8 +205,8 @@ public class chickenControl : MonoBehaviour
         this.openDoorAvailability = value;
     }
 
-    /*public void Flying()
+    public void Flying()
     {
         this._playerAnimator.SetBool("flying", isFlying);
-    }*/
+    }
 }

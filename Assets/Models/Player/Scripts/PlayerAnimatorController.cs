@@ -32,8 +32,13 @@ public class PlayerAnimatorController : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext theJump)
     {
-
-        _animator.SetBool("jumping", characterController.isGrounded);
+        if (theJump.started){
+            _animator.SetBool("jumping",true);
+        } else if (theJump.canceled)
+        {
+            _animator.SetBool("jumping", false);
+        }
+        
     }
 
     public bool isRunning(InputAction.CallbackContext theSpeed)
