@@ -13,9 +13,7 @@ public class chickenControl : MonoBehaviour
 
     [SerializeField] private GameObject door;
     private Animator _doorAnimator;
-    private Animator _playerAnimator;
-
-    //PlayerAnimatorController _callAnimator;
+    //private Animator _playerAnimator;
 
     CharacterController characterController;
 
@@ -29,7 +27,7 @@ public class chickenControl : MonoBehaviour
 
     private bool isJumped;
     private bool isRunning;
-    private bool isFlying;
+    //private bool isFlying;
 
     private bool key = false;
     private bool openDoorAvailability = false;
@@ -44,13 +42,10 @@ public class chickenControl : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         _doorAnimator = door.GetComponent<Animator>();
+       // _playerAnimator = this.GetComponentInChildren<Animator>();
+
 
         speed = walkSpeed;
-
-        _playerAnimator = this.GetComponentInChildren<Animator>();
-        //_callAnimator = GetComponent<PlayerAnimatorController>();
-        isFlying = false;
-
     }
 
     void Update()
@@ -106,7 +101,6 @@ public class chickenControl : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext theJump)
     {
-
         if (theJump.started)
         {
             isJumped = true;
@@ -119,14 +113,8 @@ public class chickenControl : MonoBehaviour
             if (countJump >= 0 && countJump <= 1)
             {
                 verticalMove = highJump;
-                //_callAnimator.Flying();
             }
             countJump++;
-
-            if(countJump == 2)
-            {
-                isFlying = true;
-            }
         }
 
         if (theJump.canceled)
@@ -148,7 +136,7 @@ public class chickenControl : MonoBehaviour
     }
 
     void Movement()
-    {   
+    {
         //transform.rotation = Quaternion.identity;
 
         //Debug.Log(apexLastFrame + " " + verticalMove);
@@ -157,26 +145,15 @@ public class chickenControl : MonoBehaviour
         // Glide function
         if (apexTigger == true && isJumped == true)
         {
-                    
             //Debug.Log("Wait untill ground");
             verticalMove -= glideForce * Time.deltaTime;
-
             //Flying();
-
-            //this._playerAnimator.SetBool("flying", isFlying);
-            //_callAnimator.Flying();
-            if (isFlying == true)
-            {
-                Debug.Log("Tiene que estar volando xD");
-                Flying();
-            }
 
         }
 
         else
         {
             verticalMove -= gravity * Time.deltaTime;
-            //isFlying = false;
             //Flying();
         }
 
@@ -225,9 +202,8 @@ public class chickenControl : MonoBehaviour
         this.openDoorAvailability = value;
     }
 
-    public void Flying()
+    /*public void Flying()
     {
-        //this._playerAnimator.SetBool("flying", true);
-        _playerAnimator.SetBool("flying", true);
-    }
+        this._playerAnimator.SetBool("flying", isFlying);
+    }*/
 }
