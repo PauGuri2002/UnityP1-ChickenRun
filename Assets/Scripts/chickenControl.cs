@@ -13,6 +13,7 @@ public class chickenControl : MonoBehaviour
 
     [SerializeField] private GameObject door;
     private Animator _doorAnimator;
+    //private Animator _playerAnimator;
 
     CharacterController characterController;
 
@@ -26,6 +27,7 @@ public class chickenControl : MonoBehaviour
 
     private bool isJumped;
     private bool isRunning;
+    //private bool isFlying;
 
     private bool key = false;
     private bool openDoorAvailability = false;
@@ -40,11 +42,15 @@ public class chickenControl : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         _doorAnimator = door.GetComponent<Animator>();
+       // _playerAnimator = this.GetComponentInChildren<Animator>();
+
+
         speed = walkSpeed;
     }
 
     void Update()
     {
+       // Debug.Log(_playerAnimator);
         Movement();
 
         if (characterController.isGrounded)
@@ -137,15 +143,18 @@ public class chickenControl : MonoBehaviour
         if (characterController.enabled == false) { return; }
 
         // Glide function
-        if (apexTigger == true && isJumped == true) 
+        if (apexTigger == true && isJumped == true)
         {
             //Debug.Log("Wait untill ground");
             verticalMove -= glideForce * Time.deltaTime;
+            //Flying();
+
         }
 
         else
         {
             verticalMove -= gravity * Time.deltaTime;
+            //Flying();
         }
 
         if (verticalMove * apexLastFrame < 0 && countJump == 2)
@@ -153,7 +162,7 @@ public class chickenControl : MonoBehaviour
             apexTigger = true;
             //Debug.Log("esta entrando");
         }
-  
+
         //camera direction
         Vector3 forward = cam.transform.forward;
         Vector3 right = cam.transform.right;
@@ -167,7 +176,7 @@ public class chickenControl : MonoBehaviour
         Vector3 hvMove = new Vector3(horizontalMove.x * speed, verticalMove, horizontalMove.z * speed);
         characterController.Move(hvMove * Time.deltaTime);
 
-        if (horizontalMove.magnitude > 0) { modelKFC.transform.rotation = Quaternion.LookRotation(horizontalMove); } 
+        if (horizontalMove.magnitude > 0) { modelKFC.transform.rotation = Quaternion.LookRotation(horizontalMove); }
 
         // reset all properties when grouded
         if (characterController.isGrounded)
@@ -192,4 +201,9 @@ public class chickenControl : MonoBehaviour
     {
         this.openDoorAvailability = value;
     }
+
+    /*public void Flying()
+    {
+        this._playerAnimator.SetBool("flying", isFlying);
+    }*/
 }
