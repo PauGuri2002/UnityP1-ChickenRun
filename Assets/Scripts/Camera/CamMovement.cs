@@ -6,6 +6,8 @@ public class CamMovement : MonoBehaviour
     [SerializeField]
     private GameObject cam;
     private GameObject CamParent;
+    [SerializeField]
+    private Transform camRotator;
 
 
     Vector3 position;
@@ -18,7 +20,6 @@ public class CamMovement : MonoBehaviour
     private float rotationSens = 5f, ZoomSens = 20f;
     [SerializeField]
     private chickenControl chickenControlscript;
-    private Transform Hijo;
 
 
 
@@ -28,9 +29,8 @@ public class CamMovement : MonoBehaviour
         LastPosition = transform.position;
         if (!thirdperson)
         {
-            GetComponent<MeshRenderer>().enabled = false;
+            //GetComponent<MeshRenderer>().enabled = false;
         }
-        Hijo = GetComponentInChildren<Transform>();
         CamParent = cam.transform.parent.gameObject;
     }
 
@@ -38,10 +38,10 @@ public class CamMovement : MonoBehaviour
     void Update()
     {
 
-        Hijo.rotation = Quaternion.identity;
+        camRotator.rotation = Quaternion.identity;
 
 
-        difference = Hijo.position - LastPosition;
+        difference = camRotator.position - LastPosition;
 
 
         //if (difference.magnitude > 0)
@@ -56,7 +56,7 @@ public class CamMovement : MonoBehaviour
         //}
         //cam.transform.position = transform.position;
 
-        LastPosition = Hijo.position;
+        LastPosition = camRotator.position;
 
         
     }
@@ -95,7 +95,7 @@ public class CamMovement : MonoBehaviour
             Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
             Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
             Yrotation += LookPos.x * rotationSens * Time.deltaTime;
-            cam.transform.position = new Vector3(Hijo.position.x, Hijo.position.y + 1.5f, Hijo.position.z);
+            cam.transform.position = new Vector3(camRotator.position.x, camRotator.position.y + 1.5f, camRotator.position.z);
             cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
             
         }
@@ -113,14 +113,14 @@ public class CamMovement : MonoBehaviour
 
         if (thirdperson == false)
         {
-            position = new Vector3(Hijo.position.x, Hijo.position.y + 1.5f, Hijo.position.z);
-            GetComponent<MeshRenderer>().enabled = false;
+            position = new Vector3(camRotator.position.x, camRotator.position.y + 1.5f, camRotator.position.z);
+            //GetComponent<MeshRenderer>().enabled = false;
         }
         else
         {
 
-            position = new Vector3(Hijo.position.x, Hijo.position.y + 5, Hijo.position.z - 10);
-            GetComponent<MeshRenderer>().enabled = true;
+            position = new Vector3(camRotator.position.x, camRotator.position.y + 5, camRotator.position.z - 10);
+            //GetComponent<MeshRenderer>().enabled = true;
 
 
         }

@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  camRotator: {fileID: 2541617839210178612}
   thirdperson: 0
   rotationSens: 90
   ZoomSens: 20

@@ -62,10 +62,6 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
-
-
-    
-
     public void SetRespawnPoint(Vector3 pos)
     {
         respawnPos = pos;
