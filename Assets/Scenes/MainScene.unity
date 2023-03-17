@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 616084}
   - component: {fileID: 616083}
   - component: {fileID: 616082}
-  - component: {fileID: 616081}
   m_Layer: 0
   m_Name: Glass (1)
   m_TagString: Untagged
@@ -159,20 +158,6 @@ Transform:
   m_Father: {fileID: 1018318985}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &616081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc153e0f442abb4cb638a86bde0e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terminalVelocity: 20
-  particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
 --- !u!54 &616082
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -266,7 +251,6 @@ GameObject:
   - component: {fileID: 18256413}
   - component: {fileID: 18256412}
   - component: {fileID: 18256411}
-  - component: {fileID: 18256410}
   m_Layer: 0
   m_Name: Glass (2)
   m_TagString: Untagged
@@ -289,20 +273,6 @@ Transform:
   m_Father: {fileID: 1018318985}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &18256410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18256408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc153e0f442abb4cb638a86bde0e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terminalVelocity: 20
-  particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
 --- !u!54 &18256411
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -909,7 +879,9 @@ Transform:
   - {fileID: 1312235329}
   - {fileID: 566367079}
   - {fileID: 91709816}
+  - {fileID: 1123373948}
   - {fileID: 511794006}
+  - {fileID: 1990965253}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1325,7 +1297,6 @@ GameObject:
   m_Component:
   - component: {fileID: 173311537}
   - component: {fileID: 173311543}
-  - component: {fileID: 173311538}
   - component: {fileID: 173311544}
   m_Layer: 0
   m_Name: Sauce
@@ -1351,20 +1322,6 @@ Transform:
   m_Father: {fileID: 585845799}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -48.858, z: 0}
---- !u!114 &173311538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173311536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc153e0f442abb4cb638a86bde0e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terminalVelocity: 20
-  particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
 --- !u!54 &173311543
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2642,7 +2599,6 @@ GameObject:
   - component: {fileID: 409638872}
   - component: {fileID: 409638871}
   - component: {fileID: 409638869}
-  - component: {fileID: 409638868}
   - component: {fileID: 409638873}
   m_Layer: 0
   m_Name: Bottle
@@ -2667,20 +2623,6 @@ Transform:
   m_Father: {fileID: 144566454}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &409638868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409638866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc153e0f442abb4cb638a86bde0e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terminalVelocity: 20
-  particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
 --- !u!54 &409638869
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3343,7 +3285,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 97909653}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &520889271
 GameObject:
@@ -10181,7 +10123,6 @@ GameObject:
   - component: {fileID: 850229919}
   - component: {fileID: 850229918}
   - component: {fileID: 850229917}
-  - component: {fileID: 850229916}
   m_Layer: 0
   m_Name: Glass (3)
   m_TagString: Untagged
@@ -10204,20 +10145,6 @@ Transform:
   m_Father: {fileID: 1018318985}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &850229916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850229914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc153e0f442abb4cb638a86bde0e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terminalVelocity: 20
-  particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
 --- !u!54 &850229917
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10498,6 +10425,9 @@ MonoBehaviour:
 
     Shift
     + WASD -> Sprint
+
+
+    R -> Toggle camera
 
     Scroll (3rd person) -> Zoom'
   m_isRightToLeft: 0
@@ -11778,6 +11708,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textObject: {fileID: 861192429}
+--- !u!1 &1041600375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1041600376}
+  m_Layer: 0
+  m_Name: CheckpointPos4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1041600376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041600375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.2, y: -7.82, z: 7.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1123373948}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1070941423
 GameObject:
   m_ObjectHideFlags: 0
@@ -12490,6 +12451,105 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115140597}
   m_Mesh: {fileID: 4300000, guid: b93b8a7464145664f91ed38c3ddb2153, type: 3}
+--- !u!1 &1123373947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123373948}
+  - component: {fileID: 1123373950}
+  - component: {fileID: 1123373949}
+  m_Layer: 0
+  m_Name: CheckpointTrigger4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123373948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123373947}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -121.05, y: 52.16, z: 43.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1041600376}
+  m_Father: {fileID: 97909653}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1123373949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123373947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae1e9c86715a28459f5822375cdec52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  methodToCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1966982790}
+        m_TargetAssemblyTypeName: PlayerPhysics, Assembly-CSharp
+        m_MethodName: SetRespawnPoint
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1041600376}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1123373947}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1034973337}
+        m_TargetAssemblyTypeName: HintDisplayer, Assembly-CSharp
+        m_MethodName: ChangeUIText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 'Hint: After grabbing a key, press E near a door to open
+            it.'
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &1123373950
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123373947}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5369225, y: 15, z: 18.647423}
+  m_Center: {x: 0.26846123, y: -4.5340037, z: 7.255989}
 --- !u!1 &1131111183
 GameObject:
   m_ObjectHideFlags: 0
@@ -12775,7 +12835,6 @@ GameObject:
   - component: {fileID: 1158189796}
   - component: {fileID: 1158189795}
   - component: {fileID: 1158189794}
-  - component: {fileID: 1158189793}
   m_Layer: 0
   m_Name: Glass (5)
   m_TagString: Untagged
@@ -12798,20 +12857,6 @@ Transform:
   m_Father: {fileID: 1018318985}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &1158189793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158189791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc153e0f442abb4cb638a86bde0e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terminalVelocity: 20
-  particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
 --- !u!54 &1158189794
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14144,7 +14189,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 'Hint: If you hold down space after the second jump,
+          m_StringArgument: 'Hint: If you hold down space after the double jump,
             you will glide.'
           m_BoolArgument: 0
         m_CallState: 2
@@ -14265,7 +14310,6 @@ GameObject:
   - component: {fileID: 1359384328}
   - component: {fileID: 1359384327}
   - component: {fileID: 1359384326}
-  - component: {fileID: 1359384325}
   m_Layer: 0
   m_Name: Glass (4)
   m_TagString: Untagged
@@ -14288,20 +14332,6 @@ Transform:
   m_Father: {fileID: 1018318985}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &1359384325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359384323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc153e0f442abb4cb638a86bde0e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terminalVelocity: 20
-  particles: {fileID: 7068851742454798191, guid: 7f71ed0f6bfbb5749abfb38d532300c0, type: 3}
 --- !u!54 &1359384326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23031,6 +23061,91 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1990965252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1990965253}
+  - component: {fileID: 1990965255}
+  - component: {fileID: 1990965254}
+  m_Layer: 0
+  m_Name: EndTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1990965253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990965252}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -142.49, y: 52.16, z: 58.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 97909653}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1990965254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990965252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae1e9c86715a28459f5822375cdec52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  methodToCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1990965252}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1034973337}
+        m_TargetAssemblyTypeName: HintDisplayer, Assembly-CSharp
+        m_MethodName: ChangeUIText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: THANKS FOR PLAYING :)
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &1990965255
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990965252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9203484, y: 10.050346, z: 5.9880123}
+  m_Center: {x: -0.5506669, y: -6.0328445, z: 1.0308459}
 --- !u!1 &2013523111
 GameObject:
   m_ObjectHideFlags: 0
@@ -25472,15 +25587,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5457853735503463893, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -89.4
+      value: 55.8
       objectReference: {fileID: 0}
     - target: {fileID: 5457853735503463893, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.1
+      value: 12.31
       objectReference: {fileID: 0}
     - target: {fileID: 5457853735503463893, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 70.25
+      value: -50.03
       objectReference: {fileID: 0}
     - target: {fileID: 5457853735503463893, guid: be67e05f8c7c90b44b1d734f137e1efd, type: 3}
       propertyPath: m_LocalRotation.w

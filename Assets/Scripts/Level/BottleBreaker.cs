@@ -12,7 +12,7 @@ public class BottleBreaker : MonoBehaviour
         if(collision.relativeVelocity.magnitude >= terminalVelocity)
         {
             Instantiate(particles, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

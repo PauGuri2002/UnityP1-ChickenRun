@@ -5,7 +5,7 @@ using UnityEngine;
 public class respawnObjects : MonoBehaviour
 {
     private Dictionary <GameObject,Vector3> positionFix;
-    private Dictionary<GameObject, Quaternion> rotationFix;
+    private Dictionary <GameObject, Quaternion> rotationFix;
 
     void Start()
     {   
@@ -22,8 +22,10 @@ public class respawnObjects : MonoBehaviour
     public void ResetTransform()
     {   
 
-        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Respawn"))
+        foreach(KeyValuePair<GameObject,Vector3> storedPos in positionFix)
         {
+            GameObject obj = storedPos.Key;
+            obj.SetActive(true);
             obj.transform.position = positionFix[obj];
             obj.transform.rotation = rotationFix[obj];
             Rigidbody rb = obj.GetComponent<Rigidbody>();

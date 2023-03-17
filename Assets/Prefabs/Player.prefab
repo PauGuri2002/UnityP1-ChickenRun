@@ -341,8 +341,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   camRotator: {fileID: 2541617839210178612}
   thirdperson: 0
-  rotationSens: 90
-  ZoomSens: 20
+  rotationSens: 20
+  ZoomSens: 10
   playerRenderer: {fileID: 5151934217256745421}
 --- !u!114 &5457853735503463894
 MonoBehaviour:
