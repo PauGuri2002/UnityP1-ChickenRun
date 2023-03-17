@@ -21,8 +21,6 @@ public class PlayerPhysics : MonoBehaviour
         chickenControl = GetComponent<chickenControl>();
         respawnObjectsScript = GetComponent<respawnObjects>();
 
-        //capsuleCollider.enabled = false;
-
         respawnPos = transform.position;
     }
 

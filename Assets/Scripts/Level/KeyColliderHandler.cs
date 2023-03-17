@@ -7,7 +7,6 @@ public class KeyColliderHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
 
     {
-        
         chickenControl player = other.GetComponent<chickenControl>();
         if (player != null)
         {
@@ -21,6 +20,4 @@ public class KeyColliderHandler : MonoBehaviour
         player.SetKey(true);
         Destroy(gameObject);
     }
-
-
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,11 +11,6 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         _animator = this.GetComponentInChildren<Animator>();
         characterController = GetComponent<CharacterController>();
-    }
-
-    void Update()
-    {
-
     }
 
     public void OnMove(InputAction.CallbackContext WASD)

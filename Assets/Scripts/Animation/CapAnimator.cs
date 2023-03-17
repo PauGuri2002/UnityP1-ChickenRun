@@ -12,11 +12,6 @@ public class CapAnimatorHandler : MonoBehaviour
         _animator = this.GetComponent<Animator>();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
 
     {

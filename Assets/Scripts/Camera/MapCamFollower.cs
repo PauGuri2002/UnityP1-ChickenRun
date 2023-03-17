@@ -16,6 +16,5 @@ public class MapCamFollower : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(90, player.rotation.eulerAngles.y, 0);
         }
-
     }
 }

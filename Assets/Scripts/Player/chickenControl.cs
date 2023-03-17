@@ -72,9 +72,6 @@ public class chickenControl : MonoBehaviour
         }
 
         apexLastFrame = verticalMove;
-
-        //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0, Camera.main.transform.localEulerAngles.y);
-
     }
 
     public void OnMove(InputAction.CallbackContext WASD)
@@ -88,13 +85,11 @@ public class chickenControl : MonoBehaviour
         if (theSpeed.started)
         {
             isRunning = true;
-            //Debug.Log("Shift Pressed");
         }
 
         if (theSpeed.canceled)
         {
             isRunning = false;
-            //Debug.Log("Shift Released");
         }
     }
     public void OnJump(InputAction.CallbackContext theJump)
