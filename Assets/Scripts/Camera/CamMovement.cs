@@ -10,14 +10,14 @@ public class CamMovement : MonoBehaviour
     private Transform camRotator;
 
     Vector3 position;
-    public bool thirdperson = false;
+    private bool thirdperson = false;
     private Vector2 LookPos;
     private float Xrotation = 0f, Zoom = 0f, Yrotation=0f;
     private Vector3 LastPosition = new Vector3(0,0,0);
     private Vector3 difference = new Vector3(0,0,0);
 
     [SerializeField]
-    private float rotationSens = 5f, ZoomSens = 20f;
+    private float rotationSens = 5f, ZoomSens = 20f, firstPersonHeight = 1f;
     [SerializeField]
     private GameObject playerRenderer;
 
@@ -71,7 +71,7 @@ public class CamMovement : MonoBehaviour
             Xrotation += -LookPos.y * rotationSens * Time.deltaTime;
             Xrotation = Mathf.Clamp(Xrotation, -80f, 80f);
             Yrotation += LookPos.x * rotationSens * Time.deltaTime;
-            CamParent.transform.position = new Vector3(camRotator.position.x, camRotator.position.y + 1.5f, camRotator.position.z);
+            CamParent.transform.position = new Vector3(camRotator.position.x, camRotator.position.y + firstPersonHeight, camRotator.position.z);
             cam.transform.rotation = Quaternion.Euler(Xrotation, Yrotation, 0);
         }
     }
@@ -89,7 +89,7 @@ public class CamMovement : MonoBehaviour
 
         if (thirdperson == false)
         {
-            position = new Vector3(camRotator.position.x, camRotator.position.y + 1.5f, camRotator.position.z);
+            position = new Vector3(camRotator.position.x, camRotator.position.y + firstPersonHeight, camRotator.position.z);
             playerRenderer.SetActive(false);
         }
         else

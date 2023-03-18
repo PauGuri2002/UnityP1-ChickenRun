@@ -340,9 +340,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   camRotator: {fileID: 2541617839210178612}
-  thirdperson: 0
   rotationSens: 20
   ZoomSens: 10
+  firstPersonHeight: 0.2
   playerRenderer: {fileID: 5151934217256745421}
 --- !u!114 &5457853735503463894
 MonoBehaviour:
